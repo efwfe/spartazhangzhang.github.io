@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="python,module," />
 
 
 
@@ -80,13 +80,14 @@
 
 
 <meta name="description" content="logging 日志模块的基本概念日志一共分成5个等级，从低到高分别是：  DEBUG INFO WARNING ERROR CRITICAL  说明:  DEBUG：详细的信息,通常只出现在诊断问题上 INFO：确认一切按预期运行 WARNING：一个迹象表明,一些意想不到的事情发生了,或表明一些问题在不久的将来(例如。磁盘空间低”)。这个软件还能按预期工作。 ERROR：更严重的问题,软件没能">
+<meta name="keywords" content="python,module">
 <meta property="og:type" content="article">
 <meta property="og:title" content="logger in python">
 <meta property="og:url" content="http://yoursite.com/2018/02/24/logging日志模块/index.html">
 <meta property="og:site_name" content="Learning Python">
 <meta property="og:description" content="logging 日志模块的基本概念日志一共分成5个等级，从低到高分别是：  DEBUG INFO WARNING ERROR CRITICAL  说明:  DEBUG：详细的信息,通常只出现在诊断问题上 INFO：确认一切按预期运行 WARNING：一个迹象表明,一些意想不到的事情发生了,或表明一些问题在不久的将来(例如。磁盘空间低”)。这个软件还能按预期工作。 ERROR：更严重的问题,软件没能">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-02-24T08:47:56.401Z">
+<meta property="og:updated_time" content="2018-02-25T09:58:19.456Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="logger in python">
 <meta name="twitter:description" content="logging 日志模块的基本概念日志一共分成5个等级，从低到高分别是：  DEBUG INFO WARNING ERROR CRITICAL  说明:  DEBUG：详细的信息,通常只出现在诊断问题上 INFO：确认一切按预期运行 WARNING：一个迹象表明,一些意想不到的事情发生了,或表明一些问题在不久的将来(例如。磁盘空间低”)。这个软件还能按预期工作。 ERROR：更严重的问题,软件没能">
@@ -292,6 +293,28 @@
           </span>
 
           
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Python/" itemprop="url" rel="index">
+                    <span itemprop="name">Python</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
 
           
             
@@ -333,9 +356,10 @@
 <li>INFO：确认一切按预期运行</li>
 <li>WARNING：一个迹象表明,一些意想不到的事情发生了,或表明一些问题在不久的将来(例如。磁盘空间低”)。这个软件还能按预期工作。</li>
 <li>ERROR：更严重的问题,软件没能执行一些功能</li>
-<li>CRITICAL：一个严重的错误,这表明程序本身可能无法继续运行<br>这5个等级，也分别对应5种打日志的方法： debug 、info 、warning 、error 、critical。默认的是WARNING，当在WARNING或之上时才被跟踪。</li>
+<li>CRITICAL：一个严重的错误,这表明程序本身可能无法继续运行<br>这5个等级，也分别对应5种打日志的方法： debug 、info 、warning 、error 、critical。默认的是WARNING，当在WARNING或之上时才被跟踪。<a id="more"></a>
+<h3 id="日志的输出格式"><a href="#日志的输出格式" class="headerlink" title="日志的输出格式"></a>日志的输出格式</h3></li>
 </ul>
-<h3 id="日志的输出格式"><a href="#日志的输出格式" class="headerlink" title="日志的输出格式"></a>日志的输出格式</h3><p>logging.basicConfig函数中，可以指定日志的输出格式format<br>%(levelno)s: 打印日志级别的数值<br>%(levelname)s: 打印日志级别名称<br>%(pathname)s: 打印当前执行程序的路径，其实就是sys.argv[0]<br>%(filename)s: 打印当前执行程序名<br>%(funcName)s: 打印日志的当前函数<br>%(lineno)d: 打印日志的当前行号<br>%(asctime)s: 打印日志的时间<br>%(thread)d: 打印线程ID<br>%(threadName)s: 打印线程名称<br>%(process)d: 打印进程ID<br>%(message)s: 打印日志信息</p>
+<p>logging.basicConfig函数中，可以指定日志的输出格式format<br>%(levelno)s: 打印日志级别的数值<br>%(levelname)s: 打印日志级别名称<br>%(pathname)s: 打印当前执行程序的路径，其实就是sys.argv[0]<br>%(filename)s: 打印当前执行程序名<br>%(funcName)s: 打印日志的当前函数<br>%(lineno)d: 打印日志的当前行号<br>%(asctime)s: 打印日志的时间<br>%(thread)d: 打印线程ID<br>%(threadName)s: 打印线程名称<br>%(process)d: 打印进程ID<br>%(message)s: 打印日志信息</p>
 <h3 id="logging-模块的一般使用"><a href="#logging-模块的一般使用" class="headerlink" title="logging 模块的一般使用"></a>logging 模块的一般使用</h3><p>import logging<br>logging.basicConfig(level=logging.WARNING,<br>format=’%(asctime)s - %(filename)s[line:%(lineno)d] - %(levelname)s: %(message)s’)</p>
 <p>输出信息到控制台和文档<br>这个方面一般采用loggger对象<br>import logging</p>
 <p> 第一步，创建一个logger<br>logger = logging.getLogger()<br>logger.setLevel(logging.INFO)  # Log等级总开关  </p>
@@ -357,6 +381,14 @@
     
 
     <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/python/" rel="tag"># python</a>
+          
+            <a href="/tags/module/" rel="tag"># module</a>
+          
+        </div>
       
 
       
@@ -459,7 +491,25 @@
             
 
             
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">1</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
 
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">2</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
             
 
           </nav>

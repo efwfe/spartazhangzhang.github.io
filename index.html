@@ -291,6 +291,28 @@
           </span>
 
           
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Python/" itemprop="url" rel="index">
+                    <span itemprop="name">Python</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
 
           
             
@@ -319,8 +341,7 @@
 
       
         
-          
-            <h3 id="logging-日志模块的基本概念"><a href="#logging-日志模块的基本概念" class="headerlink" title="logging 日志模块的基本概念"></a>logging 日志模块的基本概念</h3><p>日志一共分成5个等级，从低到高分别是：</p>
+          <h3 id="logging-日志模块的基本概念"><a href="#logging-日志模块的基本概念" class="headerlink" title="logging 日志模块的基本概念"></a>logging 日志模块的基本概念</h3><p>日志一共分成5个等级，从低到高分别是：</p>
 <ol>
 <li>DEBUG</li>
 <li>INFO</li>
@@ -334,18 +355,14 @@
 <li>INFO：确认一切按预期运行</li>
 <li>WARNING：一个迹象表明,一些意想不到的事情发生了,或表明一些问题在不久的将来(例如。磁盘空间低”)。这个软件还能按预期工作。</li>
 <li>ERROR：更严重的问题,软件没能执行一些功能</li>
-<li>CRITICAL：一个严重的错误,这表明程序本身可能无法继续运行<br>这5个等级，也分别对应5种打日志的方法： debug 、info 、warning 、error 、critical。默认的是WARNING，当在WARNING或之上时才被跟踪。</li>
-</ul>
-<h3 id="日志的输出格式"><a href="#日志的输出格式" class="headerlink" title="日志的输出格式"></a>日志的输出格式</h3><p>logging.basicConfig函数中，可以指定日志的输出格式format<br>%(levelno)s: 打印日志级别的数值<br>%(levelname)s: 打印日志级别名称<br>%(pathname)s: 打印当前执行程序的路径，其实就是sys.argv[0]<br>%(filename)s: 打印当前执行程序名<br>%(funcName)s: 打印日志的当前函数<br>%(lineno)d: 打印日志的当前行号<br>%(asctime)s: 打印日志的时间<br>%(thread)d: 打印线程ID<br>%(threadName)s: 打印线程名称<br>%(process)d: 打印进程ID<br>%(message)s: 打印日志信息</p>
-<h3 id="logging-模块的一般使用"><a href="#logging-模块的一般使用" class="headerlink" title="logging 模块的一般使用"></a>logging 模块的一般使用</h3><p>import logging<br>logging.basicConfig(level=logging.WARNING,<br>format=’%(asctime)s - %(filename)s[line:%(lineno)d] - %(levelname)s: %(message)s’)</p>
-<p>输出信息到控制台和文档<br>这个方面一般采用loggger对象<br>import logging</p>
-<p> 第一步，创建一个logger<br>logger = logging.getLogger()<br>logger.setLevel(logging.INFO)  # Log等级总开关  </p>
-<p> 第二步，创建一个handler，用于写入日志文件<br>logfile = ‘./log.txt’<br>fh = logging.FileHandler(logfile, mode=’a’)  # open的打开模式这里可以进行参考<br>fh.setLevel(logging.DEBUG)  # 输出到file的log等级的开关  </p>
-<p> 第三步，再创建一个handler，用于输出到控制台<br>ch = logging.StreamHandler()<br>ch.setLevel(logging.WARNING)   # 输出到console的log等级的开关  </p>
-<p> 第四步，定义handler的输出格式<br>formatter = logging.Formatter(“%(asctime)s - %(filename)s[line:%(lineno)d] - %(levelname)s: %(message)s”)<br>fh.setFormatter(formatter)<br>ch.setFormatter(formatter)  </p>
-<p> 第五步，将logger添加到handler里面<br>logger.addHandler(fh)<br>logger.addHandler(ch)  </p>
-
-          
+<li>CRITICAL：一个严重的错误,这表明程序本身可能无法继续运行<br>这5个等级，也分别对应5种打日志的方法： debug 、info 、warning 、error 、critical。默认的是WARNING，当在WARNING或之上时才被跟踪。
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2018/02/24/logging日志模块/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -463,8 +480,8 @@
       
         
           
-            <p>第一次根据网友教程使用关于node.js 和 hexo 的分享搭建的个人博客。<br>虽然中途遇到很多小问题，目前为止来说看到成功的时候还是很开心的一件事。</p>
-<h2 id="whatever-I’m-here-now"><a href="#whatever-I’m-here-now" class="headerlink" title="whatever, I’m here now !"></a>whatever, I’m here now !</h2>
+            <p>This is my first blog ! ! !</p>
+
           
         
       
@@ -552,7 +569,25 @@
             
 
             
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">1</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
 
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">2</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
             
 
           </nav>
