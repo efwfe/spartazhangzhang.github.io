@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="python,module," />
+  <meta name="keywords" content="tkInter,modules,chapter 03," />
 
 
 
@@ -79,18 +79,18 @@
 
 
 
-<meta name="description" content="logging 日志模块的基本概念日志一共分成5个等级，从低到高分别是：  DEBUG INFO WARNING ERROR CRITICAL  说明:  DEBUG：详细的信息,通常只出现在诊断问题上 INFO：确认一切按预期运行 WARNING：一个迹象表明,一些意想不到的事情发生了,或表明一些问题在不久的将来(例如。磁盘空间低”)。这个软件还能按预期工作。 ERROR：更严重的问题,软件没能">
-<meta name="keywords" content="python,module">
+<meta name="description" content="创建一个消息盒子创建一个消息盒子 包括消息，警告，错误用户的反馈窗口 它可以是信息性的，暗示潜在的问题，甚至是灾难性的错误。先导入响应的tkInter模块。 import tkinter as tk from tkinter import Menu from tkinter import messagebox as mBox 接下来我们创建一个回调函数来显示消息盒子,我们必须在将回调附加到菜单项的">
+<meta name="keywords" content="tkInter,modules,chapter 03">
 <meta property="og:type" content="article">
-<meta property="og:title" content="logger in python">
-<meta property="og:url" content="http://yoursite.com/2018/02/24/logging日志模块/index.html">
+<meta property="og:title" content="Chapter 03创建一个消息盒子">
+<meta property="og:url" content="http://yoursite.com/2018/03/02/tkInter-in-python-1/index.html">
 <meta property="og:site_name" content="Learning Python">
-<meta property="og:description" content="logging 日志模块的基本概念日志一共分成5个等级，从低到高分别是：  DEBUG INFO WARNING ERROR CRITICAL  说明:  DEBUG：详细的信息,通常只出现在诊断问题上 INFO：确认一切按预期运行 WARNING：一个迹象表明,一些意想不到的事情发生了,或表明一些问题在不久的将来(例如。磁盘空间低”)。这个软件还能按预期工作。 ERROR：更严重的问题,软件没能">
+<meta property="og:description" content="创建一个消息盒子创建一个消息盒子 包括消息，警告，错误用户的反馈窗口 它可以是信息性的，暗示潜在的问题，甚至是灾难性的错误。先导入响应的tkInter模块。 import tkinter as tk from tkinter import Menu from tkinter import messagebox as mBox 接下来我们创建一个回调函数来显示消息盒子,我们必须在将回调附加到菜单项的">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-02-25T09:58:19.456Z">
+<meta property="og:updated_time" content="2018-03-02T11:54:41.693Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="logger in python">
-<meta name="twitter:description" content="logging 日志模块的基本概念日志一共分成5个等级，从低到高分别是：  DEBUG INFO WARNING ERROR CRITICAL  说明:  DEBUG：详细的信息,通常只出现在诊断问题上 INFO：确认一切按预期运行 WARNING：一个迹象表明,一些意想不到的事情发生了,或表明一些问题在不久的将来(例如。磁盘空间低”)。这个软件还能按预期工作。 ERROR：更严重的问题,软件没能">
+<meta name="twitter:title" content="Chapter 03创建一个消息盒子">
+<meta name="twitter:description" content="创建一个消息盒子创建一个消息盒子 包括消息，警告，错误用户的反馈窗口 它可以是信息性的，暗示潜在的问题，甚至是灾难性的错误。先导入响应的tkInter模块。 import tkinter as tk from tkinter import Menu from tkinter import messagebox as mBox 接下来我们创建一个回调函数来显示消息盒子,我们必须在将回调附加到菜单项的">
 
 
 
@@ -120,13 +120,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2018/02/24/logging日志模块/"/>
+  <link rel="canonical" href="http://yoursite.com/2018/03/02/tkInter-in-python-1/"/>
 
 
 
 
 
-  <title>logger in python | Learning Python</title>
+  <title>Chapter 03创建一个消息盒子 | Learning Python</title>
   
 
 
@@ -253,7 +253,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/02/24/logging日志模块/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/03/02/tkInter-in-python-1/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="sparta zhang">
@@ -270,7 +270,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">logger in python</h1>
+          <h1 class="post-title" itemprop="name headline">Chapter 03创建一个消息盒子</h1>
         
 
         <div class="post-meta">
@@ -282,8 +282,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-02-24T16:30:20+08:00">
-                2018-02-24
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-03-02T18:21:00+08:00">
+                2018-03-02
               </time>
             
 
@@ -305,8 +305,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Python/" itemprop="url" rel="index">
-                    <span itemprop="name">Python</span>
+                  <a href="/categories/tkinter/" itemprop="url" rel="index">
+                    <span itemprop="name">tkinter</span>
                   </a>
                 </span>
 
@@ -342,32 +342,42 @@
       
 
       
-        <h3 id="logging-日志模块的基本概念"><a href="#logging-日志模块的基本概念" class="headerlink" title="logging 日志模块的基本概念"></a>logging 日志模块的基本概念</h3><p>日志一共分成5个等级，从低到高分别是：</p>
-<ol>
-<li>DEBUG</li>
-<li>INFO</li>
-<li>WARNING</li>
-<li>ERROR</li>
-<li>CRITICAL</li>
-</ol>
-<p>说明:</p>
-<ul>
-<li>DEBUG：详细的信息,通常只出现在诊断问题上</li>
-<li>INFO：确认一切按预期运行</li>
-<li>WARNING：一个迹象表明,一些意想不到的事情发生了,或表明一些问题在不久的将来(例如。磁盘空间低”)。这个软件还能按预期工作。</li>
-<li>ERROR：更严重的问题,软件没能执行一些功能</li>
-<li>CRITICAL：一个严重的错误,这表明程序本身可能无法继续运行<br>这5个等级，也分别对应5种打日志的方法： debug 、info 、warning 、error 、critical。默认的是WARNING，当在WARNING或之上时才被跟踪。<a id="more"></a>
-<h3 id="日志的输出格式"><a href="#日志的输出格式" class="headerlink" title="日志的输出格式"></a>日志的输出格式</h3></li>
-</ul>
-<p>logging.basicConfig函数中，可以指定日志的输出格式format<br>%(levelno)s: 打印日志级别的数值<br>%(levelname)s: 打印日志级别名称<br>%(pathname)s: 打印当前执行程序的路径，其实就是sys.argv[0]<br>%(filename)s: 打印当前执行程序名<br>%(funcName)s: 打印日志的当前函数<br>%(lineno)d: 打印日志的当前行号<br>%(asctime)s: 打印日志的时间<br>%(thread)d: 打印线程ID<br>%(threadName)s: 打印线程名称<br>%(process)d: 打印进程ID<br>%(message)s: 打印日志信息</p>
-<h3 id="logging-模块的一般使用"><a href="#logging-模块的一般使用" class="headerlink" title="logging 模块的一般使用"></a>logging 模块的一般使用</h3><p>import logging<br>logging.basicConfig(level=logging.WARNING,<br>format=’%(asctime)s - %(filename)s[line:%(lineno)d] - %(levelname)s: %(message)s’)</p>
-<p>输出信息到控制台和文档<br>这个方面一般采用loggger对象<br>import logging</p>
-<p> 第一步，创建一个logger<br>logger = logging.getLogger()<br>logger.setLevel(logging.INFO)  # Log等级总开关  </p>
-<p> 第二步，创建一个handler，用于写入日志文件<br>logfile = ‘./log.txt’<br>fh = logging.FileHandler(logfile, mode=’a’)  # open的打开模式这里可以进行参考<br>fh.setLevel(logging.DEBUG)  # 输出到file的log等级的开关  </p>
-<p> 第三步，再创建一个handler，用于输出到控制台<br>ch = logging.StreamHandler()<br>ch.setLevel(logging.WARNING)   # 输出到console的log等级的开关  </p>
-<p> 第四步，定义handler的输出格式<br>formatter = logging.Formatter(“%(asctime)s - %(filename)s[line:%(lineno)d] - %(levelname)s: %(message)s”)<br>fh.setFormatter(formatter)<br>ch.setFormatter(formatter)  </p>
-<p> 第五步，将logger添加到handler里面<br>logger.addHandler(fh)<br>logger.addHandler(ch)  </p>
+        <h3 id="创建一个消息盒子"><a href="#创建一个消息盒子" class="headerlink" title="创建一个消息盒子"></a>创建一个消息盒子</h3><h5 id="创建一个消息盒子-包括消息，警告，错误"><a href="#创建一个消息盒子-包括消息，警告，错误" class="headerlink" title="创建一个消息盒子 包括消息，警告，错误"></a>创建一个消息盒子 包括消息，警告，错误</h5><p>用户的反馈窗口 它可以是信息性的，暗示潜在的问题，甚至是灾难性的错误。<br>先导入响应的tkInter模块。</p>
+<pre><code>import tkinter as tk
+from tkinter import Menu
+from tkinter import messagebox as mBox
+</code></pre><p>接下来我们创建一个回调函数来显示消息盒子,<br>我们必须在将回调附加到菜单项的代码上面找到回调的代码，因为这仍然是过程性的，而不是oop代码。<br><a id="more"></a></p>
+<h5 id="窗口初始话"><a href="#窗口初始话" class="headerlink" title="窗口初始话"></a>窗口初始话</h5><pre><code>win = tk.Tk()
+menuBar = Menu(win)
+win.config(menu=menuBar)
+fileMenu = Menu(menuBar, tearoff=0) # tearoff 能够排除点第一个行的点点分隔符
 
+
+def _quit():
+    win.quit()
+    win.destroy()
+    exit()
+
+def _msgBox():
+    # mBox.showinfo(&quot;Python 盒子信息&quot;, &quot;Created by Sparta zhang:\n The year is 2018&quot;)
+    # mBox.showerror(&quot; Python 错误信息 !!&quot;, &quot;warning by Sparta Zhang:\n the year is 2018&quot;)
+    # mBox.showwarning(&quot; Python 警告信息 !!&quot;, &quot;warning by Sparta Zhang:\n the year is 2018&quot;)
+
+# 运行此gui代码将导致弹出，其用户响应可以通过将用户响应保存在应答变量中，从而在此事件驱动的gui循环的答案上分支。
+anwser = mBox.askyesno(&quot;Python 确认选择信息&quot;, &quot;你确定你知道你在做啥吗?&quot;)
+print(anwser)
+</code></pre><h5 id="添加菜单栏元素"><a href="#添加菜单栏元素" class="headerlink" title="添加菜单栏元素"></a>添加菜单栏元素</h5><pre><code>fileMenu.add_command(label=&quot;New&quot;)
+####可以使用下面的代码添加分割线
+</code></pre><h5 id="fileMenu-add-separator"><a href="#fileMenu-add-separator" class="headerlink" title="fileMenu.add_separator()"></a>fileMenu.add_separator()</h5><pre><code>fileMenu.add_command(label=&quot;Exit&quot;, command=_quit)
+fileMenu.add_command(label=&quot;Boom&quot;)
+menuBar.add_cascade(label=&apos;File&apos;, menu=fileMenu)
+</code></pre><h5 id="帮助菜单栏"><a href="#帮助菜单栏" class="headerlink" title="帮助菜单栏"></a>帮助菜单栏</h5><pre><code>helpMenu = Menu(menuBar, tearoff=0)
+helpMenu.add_command(label=&quot;Help&quot;)
+helpMenu.add_command(label=&quot;About&quot;, command=_msgBox)
+menuBar.add_cascade(label=&apos;About&apos;, menu=helpMenu)
+
+win.mainloop()
+</code></pre>
       
     </div>
     
@@ -384,9 +394,11 @@
       
         <div class="post-tags">
           
-            <a href="/tags/python/" rel="tag"># python</a>
+            <a href="/tags/tkInter/" rel="tag"># tkInter</a>
           
-            <a href="/tags/module/" rel="tag"># module</a>
+            <a href="/tags/modules/" rel="tag"># modules</a>
+          
+            <a href="/tags/chapter-03/" rel="tag"># chapter 03</a>
           
         </div>
       
@@ -399,8 +411,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/02/18/hello-world/" rel="next" title="Hello World">
-                <i class="fa fa-chevron-left"></i> Hello World
+              <a href="/2018/02/24/logging日志模块/" rel="next" title="logger in python">
+                <i class="fa fa-chevron-left"></i> logger in python
               </a>
             
           </div>
@@ -408,10 +420,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2018/03/02/tkInter-in-python-1/" rel="prev" title="Chapter 03创建一个消息盒子">
-                Chapter 03创建一个消息盒子 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -542,7 +550,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#logging-日志模块的基本概念"><span class="nav-number">1.</span> <span class="nav-text">logging 日志模块的基本概念</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#日志的输出格式"><span class="nav-number">2.</span> <span class="nav-text">日志的输出格式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#logging-模块的一般使用"><span class="nav-number">3.</span> <span class="nav-text">logging 模块的一般使用</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#创建一个消息盒子"><span class="nav-number">1.</span> <span class="nav-text">创建一个消息盒子</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#创建一个消息盒子-包括消息，警告，错误"><span class="nav-number">1.0.1.</span> <span class="nav-text">创建一个消息盒子 包括消息，警告，错误</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#窗口初始话"><span class="nav-number">1.0.2.</span> <span class="nav-text">窗口初始话</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#添加菜单栏元素"><span class="nav-number">1.0.3.</span> <span class="nav-text">添加菜单栏元素</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#fileMenu-add-separator"><span class="nav-number">1.0.4.</span> <span class="nav-text">fileMenu.add_separator()</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#帮助菜单栏"><span class="nav-number">1.0.5.</span> <span class="nav-text">帮助菜单栏</span></a></li></ol></li></ol></li></ol></div>
             
 
           </div>
