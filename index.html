@@ -249,6 +249,169 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/03/03/hapter-03-2自定义消息盒子/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="sparta zhang">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Learning Python">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/03/03/hapter-03-2自定义消息盒子/" itemprop="url">Chapter 03-2自定义消息盒子</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-03-03T17:08:00+08:00">
+                2018-03-03
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Chapter-03/" itemprop="url" rel="index">
+                    <span itemprop="name">Chapter 03</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Chapter-03/03-2/" itemprop="url" rel="index">
+                    <span itemprop="name">03-2</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <pre><code>import tkinter as tk
+from tkinter import messagebox as mBox
+
+win = tk.Tk()
+</code></pre><h6 id="接下来的代码用来不显示背景的那个窗口"><a href="#接下来的代码用来不显示背景的那个窗口" class="headerlink" title="接下来的代码用来不显示背景的那个窗口"></a>接下来的代码用来不显示背景的那个窗口</h6><pre><code>win.withdraw()
+
+mBox.showinfo(&quot;asdasshahah&quot;)
+</code></pre><h6 id="第一个参数是标题，第二个参数是显示在弹出消息框中的文本。"><a href="#第一个参数是标题，第二个参数是显示在弹出消息框中的文本。" class="headerlink" title="第一个参数是标题，第二个参数是显示在弹出消息框中的文本。"></a>第一个参数是标题，第二个参数是显示在弹出消息框中的文本。</h6><h5 id="我们可以将文本从标题移到弹出消息框中。"><a href="#我们可以将文本从标题移到弹出消息框中。" class="headerlink" title="我们可以将文本从标题移到弹出消息框中。"></a>我们可以将文本从标题移到弹出消息框中。</h5><pre><code>mBox.showinfo(&apos;indentfy&apos;,&quot;asdasshahah&quot;)
+</code></pre><p>  通过添加一个空的单引号或双引号，然后加上逗号，类似于函数的参数传递</p>
+<pre><code>最后加上主循环
+win.mainloop()
+</code></pre>
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/03/02/tkInter-in-python-1/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -268,7 +431,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/03/02/tkInter-in-python-1/" itemprop="url">Chapter 03创建一个消息盒子</a></h1>
+                <a class="post-title-link" href="/2018/03/02/tkInter-in-python-1/" itemprop="url">Chapter 03-1创建一个消息盒子</a></h1>
         
 
         <div class="post-meta">
@@ -321,6 +484,17 @@
 
                 
                 
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/tkinter/Chapter-03/03-1/" itemprop="url" rel="index">
+                    <span itemprop="name">03-1</span>
+                  </a>
+                </span>
+
+                
+                
               
             </span>
           
@@ -356,7 +530,7 @@
 <pre><code>import tkinter as tk
 from tkinter import Menu
 from tkinter import messagebox as mBox
-</code></pre><p>接下来我们创建一个回调函数来显示消息盒子,<br>我们必须在将回调附加到菜单项的代码上面找到回调的代码，因为这仍然是过程性的，而不是oop代码。<br>
+</code></pre><p>接下来我们创建一个回调函数来显示消息盒子,<br>我们必须在将回调附加到菜单项的代码上面找到回调的代码，因为这仍然是过程性的，而不是oop代码。<br></p>
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/2018/03/02/tkInter-in-python-1/#more" rel="contents">
@@ -516,7 +690,7 @@ from tkinter import messagebox as mBox
 <li>INFO：确认一切按预期运行</li>
 <li>WARNING：一个迹象表明,一些意想不到的事情发生了,或表明一些问题在不久的将来(例如。磁盘空间低”)。这个软件还能按预期工作。</li>
 <li>ERROR：更严重的问题,软件没能执行一些功能</li>
-<li>CRITICAL：一个严重的错误,这表明程序本身可能无法继续运行<br>这5个等级，也分别对应5种打日志的方法： debug 、info 、warning 、error 、critical。默认的是WARNING，当在WARNING或之上时才被跟踪。
+<li>CRITICAL：一个严重的错误,这表明程序本身可能无法继续运行<br>这5个等级，也分别对应5种打日志的方法： debug 、info 、warning 、error 、critical。默认的是WARNING，当在WARNING或之上时才被跟踪。</li></ul>
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/2018/02/24/logging日志模块/#more" rel="contents">
@@ -723,7 +897,7 @@ from tkinter import messagebox as mBox
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">3</span>
+                  <span class="site-state-item-count">4</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -734,7 +908,7 @@ from tkinter import messagebox as mBox
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">3</span>
+                  <span class="site-state-item-count">6</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -745,7 +919,7 @@ from tkinter import messagebox as mBox
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">5</span>
+                  <span class="site-state-item-count">3</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
