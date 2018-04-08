@@ -87,7 +87,7 @@
 <meta property="og:site_name" content="qfwfq">
 <meta property="og:description" content="路由flask中使用装饰器@app.route()来进行路由分配; @app.route(&amp;quot;/&amp;quot;) def back():     print(request.url)    print(request.method)    print(request.headers)    return &amp;quot;Hello stuff&amp;apos; 自定义正则如果在通过浏览器访问视图函数的">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-04-08T12:27:03.552Z">
+<meta property="og:updated_time" content="2018-04-08T12:48:05.119Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="flask - basic">
 <meta name="twitter:description" content="路由flask中使用装饰器@app.route()来进行路由分配; @app.route(&amp;quot;/&amp;quot;) def back():     print(request.url)    print(request.method)    print(request.headers)    return &amp;quot;Hello stuff&amp;apos; 自定义正则如果在通过浏览器访问视图函数的">
@@ -369,7 +369,8 @@ app.url_map.converters[&quot;re&quot;] = MyConverterRegex
   @app.route(&quot;/&lt;re(r&apos;1[35678]\d{9}&apos;):mobile&gt;&quot;)
   def get_mobile(mobile):
       return &quot;the mobile is %s&quot;%mobile
-</code></pre><h6 id="cookie"><a href="#cookie" class="headerlink" title="cookie"></a>cookie</h6><p>&ensp;&ensp; cookie用来存储用户访问服务器的身份等非敏感信息，设置格式只能是元组格式。</p>
+</code></pre><a id="more"></a>
+<h6 id="cookie"><a href="#cookie" class="headerlink" title="cookie"></a>cookie</h6><p>&ensp;&ensp; cookie用来存储用户访问服务器的身份等非敏感信息，设置格式只能是元组格式。</p>
 <pre><code>@app.route(&apos;/set_cookie&apos;)
 def set_cookie():
     resp = make_response(&quot;helloworld&quot;) # 使用make_response 创建响应对象
