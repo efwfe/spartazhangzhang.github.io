@@ -249,6 +249,231 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/04/08/flask-basic/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="zhang">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="qfwfq">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/04/08/flask-basic/" itemprop="url">flask - basic</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-04-08T20:03:00+08:00">
+                2018-04-08
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/basic/" itemprop="url" rel="index">
+                    <span itemprop="name">basic</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h6 id="路由"><a href="#路由" class="headerlink" title="路由"></a>路由</h6><p>flask中使用装饰器@app.route()来进行路由分配;</p>
+<pre><code>@app.route(&quot;/&quot;)
+def back():
+    print(request.url)
+   print(request.method)
+   print(request.headers)
+   return &quot;Hello stuff&apos;
+</code></pre><h5 id="自定义正则"><a href="#自定义正则" class="headerlink" title="自定义正则"></a>自定义正则</h5><p>如果在通过浏览器访问视图函数的时候需要指定具体的参数个数类型,需要使用自定义转换器<br>自定义转换器的格式:</p>
+<ol>
+<li>自定类,继承BaseConverter</li>
+<li>重写<strong>init</strong>方法,接受三个参数</li>
+<li>重写父类方法</li>
+<li>将自定义的类,设置到app.url_map.converters[“名字”]</li>
+</ol>
+<p>class MyConverterRegex(BaseConverter):</p>
+<pre><code>#自定义转化规则,需要将规则的url_map设置到父类
+def __init__(self,url_map,regex):
+    super(MyConverterRegex, self).__init__(url_map)
+    self.regex = regex
+
+ #将自定义的类,设置到app.url_map.converters[&quot;名字&quot;]
+app.url_map.converters[&quot;re&quot;] = MyConverterRegex
+
+#匹配一个手机号
+  @app.route(&quot;/&lt;re(r&apos;1[35678]\d{9}&apos;):mobile&gt;&quot;)
+  def get_mobile(mobile):
+      return &quot;the mobile is %s&quot;%mobile
+</code></pre><h6 id="cookie"><a href="#cookie" class="headerlink" title="cookie"></a>cookie</h6><p>&ensp;&ensp; cookie用来存储用户访问服务器的身份等非敏感信息，设置格式只能是元组格式。</p>
+<pre><code>@app.route(&apos;/set_cookie&apos;)
+def set_cookie():
+    resp = make_response(&quot;helloworld&quot;) # 使用make_response 创建响应对象
+    resp.set_cookie(&quot;name&quot;,&quot;zhangsan&quot;) #cookie的默认有效期是浏览器回话结束
+    resp.set_cookie(&quot;age&quot;,&quot;13&quot;,5) #设置cookie的有效期为5秒
+    return resp
+
+@app.route(&quot;/get_cookie&quot;)
+def get_cookie():
+
+    res = request.cookies.get(&quot;age&quot;)
+    if res :
+        return res
+    else:
+        return &quot;wait&quot;
+</code></pre><h5 id="session"><a href="#session" class="headerlink" title="session"></a>session</h5><p>&ensp;&ensp; <b>session 每个用户请求的时候开辟自己独立的session空间</b>，<br>在浏览器第一次访问服务器的时候，自动开辟一个session空间生成sessionId存储到cookie中返回到浏览器，回访的时候通过cookie获得session ID。</p>
+<p><b>session在设置的时候需要先设置加密字符串</b></p>
+<pre><code>app.config[&apos;SECRET_KEY&apos;] = &apos;abcdefg&apos;
+
+@app.route(&apos;/session&apos;)
+def set_session():
+    #session 是一个类字典对象
+    session[&apos;name&apos;] = &apos;spartazhang&apos;
+    res = make_response(&apos;sparta&apos;)
+
+    return res
+    # 此时 浏览器接收到的数据是#eyJuYW1lIjoic3BhcnRhemhhbmcifQ.Dat0sQ.ubBUXndga6rqKaf2PfluDi6RgsU
+</code></pre><h5 id="g"><a href="#g" class="headerlink" title="g"></a>g</h5><p><b>g: 用来存储用户的数据库,登录信息,每次请求的时候都会创建一个新的对象；</b></p>
+<p><b>通过g对象查找sessionID 能够判断用户是否登录</b></p>
+<pre><code>app.config[&quot;SECRET_KEY&quot;] = &quot;helo&quot;
+
+# 使用g对象编写装饰器
+def login_required(view_func):
+    &quot;&quot;&quot;检验用户的登录状态&quot;&quot;&quot;
+    @wraps(view_func)
+    def wrapper(*args, **kwargs):
+        username = session.get(&quot;username&quot;)
+        if username is not None:
+            # 表示用户已经登录
+            # 使用g对象保存user_id，在视图函数中可以直接使用
+            g.username = username
+            return view_func(*args, **kwargs)
+        else:
+            # 用户未登录
+           return &quot;helloworld&quot;
+    return wrapper
+
+@app.route(&apos;/&apos;)
+def login():
+    session[&quot;username&quot;] = &quot;zhangsan&quot;
+    return &quot;已经登录&quot;
+
+@app.route(&apos;/get_info&apos;)
+@login_required
+def get_info():
+    return &quot;获取了网页详细信息%s&quot;%g.username
+</code></pre>
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/04/03/web-Analytic-VI/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -351,12 +576,6 @@
 <p>&ensp;&ensp;总是使用第一方cookie，确保所有页面都正确加码；确保网站分析工具的权限设置正确。</p>
 <p>&ensp;&ensp; 2.要有针对性</p>
 <p>&ensp;&ensp; 网上所能收集到的数据量没有上限，尽可能收集现在和不久后将来需要的数据；</p>
-<p>&ensp;&ensp; 3.数据校验。</p>
-<p>&ensp;&ensp;在公司设立一个流程来定期校验所收集的数据，至少每个季度进行校验一次。对数据的精确性的保持具有很好的作用，在公司设立一个流程来定期校验所收集的数据，至少每个季度进行校验一次。对数据的精确性的保持具有很好的作用，</p>
-<p>&ensp;&ensp; 4.精确性。</p>
-<p>&ensp;&ensp; 5.数据不完整不是问题。</p>
-<p>&ensp;&ensp; 更重要的是如何使用不完整的数据，有时候由于思维定式或者公司对风险的谨慎造成的，或者是完美主义，很多时候时间浪费在等待数据的完整性上。学会如何真正自然地使用不完整的数据，学习作出决定很有必要。</p>
-<p>&ensp;&ensp; 6.Move fast , think smart<br>&ensp;&ensp; 快速有效的制定策略，并且迅速采取行动。<br></p>
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/2018/04/03/web-Analytic-VI/#more" rel="contents">
@@ -1655,166 +1874,6 @@ from tkinter import messagebox as mBox
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/02/24/logging日志模块/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="zhang">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="qfwfq">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/02/24/logging日志模块/" itemprop="url">logger in python</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-02-24T16:30:20+08:00">
-                2018-02-24
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Python/" itemprop="url" rel="index">
-                    <span itemprop="name">Python</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h3 id="logging-日志模块的基本概念"><a href="#logging-日志模块的基本概念" class="headerlink" title="logging 日志模块的基本概念"></a>logging 日志模块的基本概念</h3><p>日志一共分成5个等级，从低到高分别是：</p>
-<ol>
-<li>DEBUG</li>
-<li>INFO</li>
-<li>WARNING</li>
-<li>ERROR</li>
-<li>CRITICAL</li>
-</ol>
-<p>说明:</p>
-<ul>
-<li>DEBUG：详细的信息,通常只出现在诊断问题上</li>
-<li>INFO：确认一切按预期运行</li>
-<li>WARNING：一个迹象表明,一些意想不到的事情发生了,或表明一些问题在不久的将来(例如。磁盘空间低”)。这个软件还能按预期工作。</li>
-<li>ERROR：更严重的问题,软件没能执行一些功能</li>
-<li>CRITICAL：一个严重的错误,这表明程序本身可能无法继续运行<br>这5个等级，也分别对应5种打日志的方法： debug 、info 、warning 、error 、critical。默认的是WARNING，当在WARNING或之上时才被跟踪。</li></ul>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2018/02/24/logging日志模块/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -1865,7 +1924,7 @@ from tkinter import messagebox as mBox
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">11</span>
+                  <span class="site-state-item-count">12</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -1876,7 +1935,7 @@ from tkinter import messagebox as mBox
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">8</span>
+                  <span class="site-state-item-count">9</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -1887,7 +1946,7 @@ from tkinter import messagebox as mBox
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">4</span>
+                  <span class="site-state-item-count">5</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
