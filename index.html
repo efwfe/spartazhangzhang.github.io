@@ -249,6 +249,156 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/04/22/SQLAchemy/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="zhang">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="qfwfq">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/04/22/SQLAchemy/" itemprop="url">SQLAchemy</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-04-22T20:05:00+08:00">
+                2018-04-22
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/SQL/" itemprop="url" rel="index">
+                    <span itemprop="name">SQL</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h4 id="SQLAlchemy-Lazy属性"><a href="#SQLAlchemy-Lazy属性" class="headerlink" title="SQLAlchemy  Lazy属性"></a>SQLAlchemy  Lazy属性</h4><h5 id="select-True-‘select’"><a href="#select-True-‘select’" class="headerlink" title="select (True ==‘select’)"></a>select (True ==‘select’)</h5><p>&ensp;&ensp;当首次访问属性时，使用单独的SELECT语句或简单的多对一引用的关系映射获取来加载元素。</p>
+<h5 id="immediate"><a href="#immediate" class="headerlink" title="immediate"></a>immediate</h5><p> &ensp;&ensp;使用单独的SELECT语句，在加载父项时加载项目时加载子元素，或对简单的多对一引用进行关系映射。</p>
+<h5 id="joined-False-‘joined’"><a href="#joined-False-‘joined’" class="headerlink" title="joined (False == ‘joined’)"></a>joined (False == ‘joined’)</h5><p>&ensp;&ensp; 应该使用“JOIN”或“LEFTJOIN”在与父连接相同的查询中积极地加载项目。查询根据内联接参数决定的。</p>
+<h5 id="subquery"><a href="#subquery" class="headerlink" title="subquery"></a>subquery</h5><p>&ensp;&ensp; 子查询-当加载父级时，应该加载一个项目，使用一个附加的SQL语句，为每个请求的集合发出一个连接到原始语句的子查询。</p>
+<h5 id="selectin"><a href="#selectin" class="headerlink" title="selectin"></a>selectin</h5><p>&ensp;&ensp; 在加载父级时，应使用“一个或多个附加SQL语句”加载项目，这些语句会向即时父对象发出联接，使用IN子句指定主键标识符。</p>
+<h5 id="noload-None-‘noload’"><a href="#noload-None-‘noload’" class="headerlink" title="noload (None == ‘noload’)"></a>noload (None == ‘noload’)</h5><p>&ensp;&ensp; 不应在任何时间发生负载。这是为了支持“只写”属性，或者以特定于应用程序的方式填充的属性。</p>
+<h5 id="raise"><a href="#raise" class="headerlink" title="raise"></a>raise</h5><p>&ensp;&ensp; 不允许偷懒加载；访问该属性，如果其值尚未通过急于加载加载，将引发无效请求错误。这种策略可以在对象被加载后从它们所连接的会话中分离出来时使用。</p>
+<h5 id="raise-on-sql"><a href="#raise-on-sql" class="headerlink" title="raise_on_sql"></a>raise_on_sql</h5><p>&ensp;&ensp; 不允许发出SQL的惰性加载；访问属性，如果其值尚未通过快速加载加载，则如果懒惰负载需要发出SQL，则将引发无效请求错误。如果懒惰负载可以从身份映射中提取相关值，或者确定它不为任何值，则加载该值。当对象将与附加会话保持关联时，可以使用该策略，但是应该阻止额外的SELECT语句。</p>
+<h5 id="dynamic"><a href="#dynamic" class="headerlink" title="dynamic"></a>dynamic</h5><p>&ensp;&ensp; 属性将返回所有读取操作的预配置查询对象，在迭代结果之前，可以应用其他过滤操作。有关详细信息，请参阅动态关系加载程序部分。<br>dymic详细解释：<a href="http://docs.sqlalchemy.org/en/latest/orm/collections.html#dynamic-relationship" target="_blank" rel="noopener">More details</a></p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/04/08/flask-basic/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1650,178 +1800,6 @@ mBox.showinfo(&quot;asdasshahah&quot;)
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/03/02/tkInter-in-python-1/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="zhang">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="qfwfq">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/03/02/tkInter-in-python-1/" itemprop="url">Chapter 03-1创建一个消息盒子</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-03-02T18:21:00+08:00">
-                2018-03-02
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/tkinter/" itemprop="url" rel="index">
-                    <span itemprop="name">tkinter</span>
-                  </a>
-                </span>
-
-                
-                
-                  ， 
-                
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/tkinter/Chapter-03/" itemprop="url" rel="index">
-                    <span itemprop="name">Chapter 03</span>
-                  </a>
-                </span>
-
-                
-                
-                  ， 
-                
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/tkinter/Chapter-03/03-1/" itemprop="url" rel="index">
-                    <span itemprop="name">03-1</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h3 id="创建一个消息盒子"><a href="#创建一个消息盒子" class="headerlink" title="创建一个消息盒子"></a>创建一个消息盒子</h3><h5 id="创建一个消息盒子-包括消息，警告，错误"><a href="#创建一个消息盒子-包括消息，警告，错误" class="headerlink" title="创建一个消息盒子 包括消息，警告，错误"></a>创建一个消息盒子 包括消息，警告，错误</h5><p>用户的反馈窗口 它可以是信息性的，暗示潜在的问题，甚至是灾难性的错误。<br>先导入响应的tkInter模块。</p>
-<pre><code>import tkinter as tk
-from tkinter import Menu
-from tkinter import messagebox as mBox
-</code></pre><p>接下来我们创建一个回调函数来显示消息盒子,<br>我们必须在将回调附加到菜单项的代码上面找到回调的代码，因为这仍然是过程性的，而不是oop代码。<br></p>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2018/03/02/tkInter-in-python-1/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -1872,7 +1850,7 @@ from tkinter import messagebox as mBox
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">12</span>
+                  <span class="site-state-item-count">13</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -1883,7 +1861,7 @@ from tkinter import messagebox as mBox
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">9</span>
+                  <span class="site-state-item-count">10</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -1894,7 +1872,7 @@ from tkinter import messagebox as mBox
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">5</span>
+                  <span class="site-state-item-count">6</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
