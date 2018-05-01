@@ -249,6 +249,153 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/05/01/const定义常量/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="zhang">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="qfwfq">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/05/01/const定义常量/" itemprop="url">const定义常量</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-05-01T16:40:00+08:00">
+                2018-05-01
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/爬虫相关/" itemprop="url" rel="index">
+                    <span itemprop="name">爬虫相关</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="定义常量到一个文件中"><a href="#定义常量到一个文件中" class="headerlink" title="定义常量到一个文件中"></a>定义常量到一个文件中</h1><p>[TOC]</p>
+<p>通过命名风格来提示使用者该变量代表的意义为常量，比如MAX_NUMBER、TOTAL。然而这种方式并没有真正实现常量，其对应的值仍然可以被改变，这只是一种约定俗成的风格。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">class _const:</span><br><span class="line">    class ConstError(TypeError):</span><br><span class="line">        pass</span><br><span class="line"></span><br><span class="line">    class ConstCaseError(ConstError):</span><br><span class="line">        pass</span><br><span class="line"></span><br><span class="line">    def __setattr__(self, name, value):</span><br><span class="line">        if name in self.__dict__:</span><br><span class="line">            raise self.ConstError(&quot;cant change const &#123;&#125;&quot;.format(name))</span><br><span class="line">        if not name.isupper():</span><br><span class="line">            raise self.ConstCaseError(&apos;const name &#123;&#125; is not all uppercase&apos;.format(name))</span><br><span class="line">        self.__dict__[name] = value</span><br><span class="line"></span><br><span class="line">import sys</span><br><span class="line">sys.modules[__name__] = _const()</span><br></pre></td></tr></table></figure>
+<p>引入到常量的文件中</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">from consts import const</span><br><span class="line">const.NAME = &quot;zxdzzx&quot;</span><br><span class="line">const.NAME = &quot;asdad&quot;</span><br><span class="line"># consts.const.ConstError: cant change const NAME</span><br><span class="line"></span><br><span class="line">const.age = 123</span><br><span class="line"># consts.const.ConstCaseError: const name age is not all uppercase</span><br></pre></td></tr></table></figure>
+<p>可以看到变量被定义以后就不能修改而且只能使用大写字母，这样能够很好的起到定义常量的作用.</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/04/22/SQLAchemy/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -341,18 +488,19 @@
 
       
         
-          
-            <h4 id="SQLAlchemy-Lazy属性"><a href="#SQLAlchemy-Lazy属性" class="headerlink" title="SQLAlchemy  Lazy属性"></a>SQLAlchemy  Lazy属性</h4><h5 id="select-True-‘select’"><a href="#select-True-‘select’" class="headerlink" title="select (True ==‘select’)"></a>select (True ==‘select’)</h5><p>&ensp;&ensp;当首次访问属性时，使用单独的SELECT语句或简单的多对一引用的关系映射获取来加载元素。</p>
+          <h4 id="SQLAlchemy-Lazy属性"><a href="#SQLAlchemy-Lazy属性" class="headerlink" title="SQLAlchemy  Lazy属性"></a>SQLAlchemy  Lazy属性</h4><h5 id="select-True-‘select’"><a href="#select-True-‘select’" class="headerlink" title="select (True ==‘select’)"></a>select (True ==‘select’)</h5><p>&ensp;&ensp;当首次访问属性时，使用单独的SELECT语句或简单的多对一引用的关系映射获取来加载元素。</p>
 <h5 id="immediate"><a href="#immediate" class="headerlink" title="immediate"></a>immediate</h5><p> &ensp;&ensp;使用单独的SELECT语句，在加载父项时加载项目时加载子元素，或对简单的多对一引用进行关系映射。</p>
 <h5 id="joined-False-‘joined’"><a href="#joined-False-‘joined’" class="headerlink" title="joined (False == ‘joined’)"></a>joined (False == ‘joined’)</h5><p>&ensp;&ensp; 应该使用“JOIN”或“LEFTJOIN”在与父连接相同的查询中积极地加载项目。查询根据内联接参数决定的。</p>
 <h5 id="subquery"><a href="#subquery" class="headerlink" title="subquery"></a>subquery</h5><p>&ensp;&ensp; 子查询-当加载父级时，应该加载一个项目，使用一个附加的SQL语句，为每个请求的集合发出一个连接到原始语句的子查询。</p>
 <h5 id="selectin"><a href="#selectin" class="headerlink" title="selectin"></a>selectin</h5><p>&ensp;&ensp; 在加载父级时，应使用“一个或多个附加SQL语句”加载项目，这些语句会向即时父对象发出联接，使用IN子句指定主键标识符。</p>
-<h5 id="noload-None-‘noload’"><a href="#noload-None-‘noload’" class="headerlink" title="noload (None == ‘noload’)"></a>noload (None == ‘noload’)</h5><p>&ensp;&ensp; 不应在任何时间发生负载。这是为了支持“只写”属性，或者以特定于应用程序的方式填充的属性。</p>
-<h5 id="raise"><a href="#raise" class="headerlink" title="raise"></a>raise</h5><p>&ensp;&ensp; 不允许偷懒加载；访问该属性，如果其值尚未通过急于加载加载，将引发无效请求错误。这种策略可以在对象被加载后从它们所连接的会话中分离出来时使用。</p>
-<h5 id="raise-on-sql"><a href="#raise-on-sql" class="headerlink" title="raise_on_sql"></a>raise_on_sql</h5><p>&ensp;&ensp; 不允许发出SQL的惰性加载；访问属性，如果其值尚未通过快速加载加载，则如果懒惰负载需要发出SQL，则将引发无效请求错误。如果懒惰负载可以从身份映射中提取相关值，或者确定它不为任何值，则加载该值。当对象将与附加会话保持关联时，可以使用该策略，但是应该阻止额外的SELECT语句。</p>
-<h5 id="dynamic"><a href="#dynamic" class="headerlink" title="dynamic"></a>dynamic</h5><p>&ensp;&ensp; 属性将返回所有读取操作的预配置查询对象，在迭代结果之前，可以应用其他过滤操作。有关详细信息，请参阅动态关系加载程序部分。<br>dymic详细解释：<a href="http://docs.sqlalchemy.org/en/latest/orm/collections.html#dynamic-relationship" target="_blank" rel="noopener">More details</a></p>
-
-          
+<h5 id="noload-None-‘noload’"><a href="#noload-None-‘noload’" class="headerlink" title="noload (None == ‘noload’)"></a>noload (None == ‘noload’)</h5><p>&ensp;&ensp; 不应在任何时间发生负载。这是为了支持“只写”属性，或者以特定于应用程序的方式填充的属性。<br></p>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2018/04/22/SQLAchemy/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -1496,7 +1644,7 @@ app.url_map.converters[&quot;re&quot;] = MyConverterRegex
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/03/05/1-1-第一个爬虫/" itemprop="url">01-1 第一个爬虫</a></h1>
+                <a class="post-title-link" href="/2018/03/05/1-1-第一个爬虫/" itemprop="url">爬虫</a></h1>
         
 
         <div class="post-meta">
@@ -1533,17 +1681,6 @@ app.url_map.converters[&quot;re&quot;] = MyConverterRegex
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
                   <a href="/categories/爬虫相关/" itemprop="url" rel="index">
                     <span itemprop="name">爬虫相关</span>
-                  </a>
-                </span>
-
-                
-                
-                  ， 
-                
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/爬虫相关/01/" itemprop="url" rel="index">
-                    <span itemprop="name">01</span>
                   </a>
                 </span>
 
@@ -1590,179 +1727,6 @@ print(html.read())
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/2018/03/05/1-1-第一个爬虫/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/03/03/Chapter-03-2自定义消息盒子/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="zhang">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="qfwfq">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/03/03/Chapter-03-2自定义消息盒子/" itemprop="url">Chapter 03-2自定义消息盒子</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-03-03T17:08:00+08:00">
-                2018-03-03
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/tkinter/" itemprop="url" rel="index">
-                    <span itemprop="name">tkinter</span>
-                  </a>
-                </span>
-
-                
-                
-                  ， 
-                
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/tkinter/Chapter-03/" itemprop="url" rel="index">
-                    <span itemprop="name">Chapter 03</span>
-                  </a>
-                </span>
-
-                
-                
-                  ， 
-                
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/tkinter/Chapter-03/03-2/" itemprop="url" rel="index">
-                    <span itemprop="name">03-2</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <p>import tkinter as tk<br>    from tkinter import messagebox as mBox</p>
-<pre><code>win = tk.Tk()
-</code></pre><h6 id="接下来的代码用来不显示背景的那个窗口"><a href="#接下来的代码用来不显示背景的那个窗口" class="headerlink" title="接下来的代码用来不显示背景的那个窗口"></a>接下来的代码用来不显示背景的那个窗口</h6><pre><code>win.withdraw()
-
-mBox.showinfo(&quot;asdasshahah&quot;)
-</code></pre>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2018/03/03/Chapter-03-2自定义消息盒子/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -1850,7 +1814,7 @@ mBox.showinfo(&quot;asdasshahah&quot;)
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">13</span>
+                  <span class="site-state-item-count">14</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>

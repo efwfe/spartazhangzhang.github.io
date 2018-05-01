@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="SQL,flask," />
+  <meta name="keywords" content="flask,SQL," />
 
 
 
@@ -80,14 +80,14 @@
 
 
 <meta name="description" content="SQLAlchemy  Lazy属性select (True ==‘select’)&amp;ensp;&amp;ensp;当首次访问属性时，使用单独的SELECT语句或简单的多对一引用的关系映射获取来加载元素。 immediate &amp;ensp;&amp;ensp;使用单独的SELECT语句，在加载父项时加载项目时加载子元素，或对简单的多对一引用进行关系映射。 joined (False == ‘joined’)&amp;ens">
-<meta name="keywords" content="SQL,flask">
+<meta name="keywords" content="flask,SQL">
 <meta property="og:type" content="article">
 <meta property="og:title" content="SQLAchemy">
 <meta property="og:url" content="http://yoursite.com/2018/04/22/SQLAchemy/index.html">
 <meta property="og:site_name" content="qfwfq">
 <meta property="og:description" content="SQLAlchemy  Lazy属性select (True ==‘select’)&amp;ensp;&amp;ensp;当首次访问属性时，使用单独的SELECT语句或简单的多对一引用的关系映射获取来加载元素。 immediate &amp;ensp;&amp;ensp;使用单独的SELECT语句，在加载父项时加载项目时加载子元素，或对简单的多对一引用进行关系映射。 joined (False == ‘joined’)&amp;ens">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-04-22T12:08:29.515Z">
+<meta property="og:updated_time" content="2018-05-01T08:40:05.818Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="SQLAchemy">
 <meta name="twitter:description" content="SQLAlchemy  Lazy属性select (True ==‘select’)&amp;ensp;&amp;ensp;当首次访问属性时，使用单独的SELECT语句或简单的多对一引用的关系映射获取来加载元素。 immediate &amp;ensp;&amp;ensp;使用单独的SELECT语句，在加载父项时加载项目时加载子元素，或对简单的多对一引用进行关系映射。 joined (False == ‘joined’)&amp;ens">
@@ -347,7 +347,7 @@
 <h5 id="joined-False-‘joined’"><a href="#joined-False-‘joined’" class="headerlink" title="joined (False == ‘joined’)"></a>joined (False == ‘joined’)</h5><p>&ensp;&ensp; 应该使用“JOIN”或“LEFTJOIN”在与父连接相同的查询中积极地加载项目。查询根据内联接参数决定的。</p>
 <h5 id="subquery"><a href="#subquery" class="headerlink" title="subquery"></a>subquery</h5><p>&ensp;&ensp; 子查询-当加载父级时，应该加载一个项目，使用一个附加的SQL语句，为每个请求的集合发出一个连接到原始语句的子查询。</p>
 <h5 id="selectin"><a href="#selectin" class="headerlink" title="selectin"></a>selectin</h5><p>&ensp;&ensp; 在加载父级时，应使用“一个或多个附加SQL语句”加载项目，这些语句会向即时父对象发出联接，使用IN子句指定主键标识符。</p>
-<h5 id="noload-None-‘noload’"><a href="#noload-None-‘noload’" class="headerlink" title="noload (None == ‘noload’)"></a>noload (None == ‘noload’)</h5><p>&ensp;&ensp; 不应在任何时间发生负载。这是为了支持“只写”属性，或者以特定于应用程序的方式填充的属性。</p>
+<h5 id="noload-None-‘noload’"><a href="#noload-None-‘noload’" class="headerlink" title="noload (None == ‘noload’)"></a>noload (None == ‘noload’)</h5><p>&ensp;&ensp; 不应在任何时间发生负载。这是为了支持“只写”属性，或者以特定于应用程序的方式填充的属性。<br><a id="more"></a></p>
 <h5 id="raise"><a href="#raise" class="headerlink" title="raise"></a>raise</h5><p>&ensp;&ensp; 不允许偷懒加载；访问该属性，如果其值尚未通过急于加载加载，将引发无效请求错误。这种策略可以在对象被加载后从它们所连接的会话中分离出来时使用。</p>
 <h5 id="raise-on-sql"><a href="#raise-on-sql" class="headerlink" title="raise_on_sql"></a>raise_on_sql</h5><p>&ensp;&ensp; 不允许发出SQL的惰性加载；访问属性，如果其值尚未通过快速加载加载，则如果懒惰负载需要发出SQL，则将引发无效请求错误。如果懒惰负载可以从身份映射中提取相关值，或者确定它不为任何值，则加载该值。当对象将与附加会话保持关联时，可以使用该策略，但是应该阻止额外的SELECT语句。</p>
 <h5 id="dynamic"><a href="#dynamic" class="headerlink" title="dynamic"></a>dynamic</h5><p>&ensp;&ensp; 属性将返回所有读取操作的预配置查询对象，在迭代结果之前，可以应用其他过滤操作。有关详细信息，请参阅动态关系加载程序部分。<br>dymic详细解释：<a href="http://docs.sqlalchemy.org/en/latest/orm/collections.html#dynamic-relationship" target="_blank" rel="noopener">More details</a></p>
@@ -368,9 +368,9 @@
       
         <div class="post-tags">
           
-            <a href="/tags/SQL/" rel="tag"># SQL</a>
-          
             <a href="/tags/flask/" rel="tag"># flask</a>
+          
+            <a href="/tags/SQL/" rel="tag"># SQL</a>
           
         </div>
       
@@ -392,6 +392,10 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/05/01/const定义常量/" rel="prev" title="const定义常量">
+                const定义常量 <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -468,7 +472,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">13</span>
+                  <span class="site-state-item-count">14</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
