@@ -249,6 +249,169 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/05/07/Django-设计原则/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="zhang">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="qfwfq">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/05/07/Django-设计原则/" itemprop="url">Django 设计原则</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-05-07T13:34:00+08:00">
+                2018-05-07
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Django/" itemprop="url" rel="index">
+                    <span itemprop="name">Django</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h3 id="Django-黄金设计原则"><a href="#Django-黄金设计原则" class="headerlink" title="Django 黄金设计原则"></a>Django 黄金设计原则</h3><p>&ensp;&ensp; 杰姆斯班尼特是一个Django核心开发商。他教给我们所有关于好的Django应用程序设计的知识。我们引述他：<br>&ensp;&ensp;<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">“The art of creating and maintaining a good Django app is that it should follow the</span><br><span class="line">truncated Unix philosophy according to Douglas McIlroy: ‘Write programs that do one</span><br><span class="line">thing and do it well.”’</span><br></pre></td></tr></table></figure></p>
+<p>&ensp;&ensp;从本质上讲，每个应用程序都应该紧紧关注自己的任务。如果一个应用程序不能用一个中等长度的句子来解释，或者你需要说‘和’不止一次，这可能意味着应用太大了，应该分解。</p>
+<p><b><br>想象一下，我们正在为我们虚构的冰淇淋店创建一个名为“两勺”的网络应用程序。想象一下我们准备开这家店：擦亮台面，制作第一批冰淇淋，以及为我们的店建立网站。我们Django项目中的应用程序可能如下：<br></b></p>
+<ul>
+<li>A flavors 可以追踪我们所有的冰淇淋口味，并在我们的网站上列出它们。</li>
+<li>A blog官方的两个独家博客</li>
+<li>An events 在我们的网站上展示我们商店的活动列表：草莓圣代星期日和星期五第一季</li>
+</ul>
+<p>这些应用中的每一个都有一个特定的功能。是的，这些应用是相互关联的，你可以想象一些事件或博客文章都围绕着某种冰激凌口味，但是拥有三个专门的应用比一个做所有事情的应用都要好得多。</p>
+<h4 id="如何优雅地给app取个名儿"><a href="#如何优雅地给app取个名儿" class="headerlink" title="如何优雅地给app取个名儿"></a>如何优雅地给app取个名儿</h4><p>&ensp;&ensp;每个人都有自己的约定，有些人喜欢使用非常丰富多彩的名称。我们喜欢使用枯燥、乏味和明显的命名系统。事实上，我们主张做以下工作：</p>
+<p>&ensp;&ensp;在可能的情况下，保持单一的单词名称，<code>如口味、动物、博客、投票、梦、估计和金融。</code>一个好的、明显的应用程序名称可以使项目更容易维护。通常情况下，应用程序的名称应该是应用程序主要模型的复数版本，但是这个规则有很多好的例外，博客是最常见的。不要仅仅考虑不过，这个应用的主要模式。你也应该考虑在选择一个名字时你希望你的URL如何出现</p>
+<h4 id="当你还不确定的时候，那就把apps设计的简单一点"><a href="#当你还不确定的时候，那就把apps设计的简单一点" class="headerlink" title="当你还不确定的时候，那就把apps设计的简单一点"></a>当你还不确定的时候，那就把apps设计的简单一点</h4><p>&ensp;&ensp;不要太担心应用程序设计的完美。这是一门艺术，而不是一门科学。有时你必须重写它们或破坏它们。<br><b>That’s ok.</b></p>
+<p></p><p>san ge chou pi jiang shuai guo zhuge liang.</p><br><p></p>
+<h4 id="模型类的归宿问题"><a href="#模型类的归宿问题" class="headerlink" title="模型类的归宿问题"></a>模型类的归宿问题</h4><ul>
+<li><p>common modules</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"># Common modules</span><br><span class="line">scoops/</span><br><span class="line">├── __init__.py</span><br><span class="line">├── admin.py</span><br><span class="line">├── forms.py</span><br><span class="line">├── management/</span><br><span class="line">├── migrations/</span><br><span class="line">├── models.py</span><br><span class="line">├── templatetags/</span><br><span class="line">├── tests/</span><br><span class="line">├── urls.py</span><br><span class="line">├── views.py</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>uncommon modules</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"># uncommon modules</span><br><span class="line">scoops/</span><br><span class="line">├── api/</span><br><span class="line">├── behaviors.py # 一种定位模型混合器的方法</span><br><span class="line">├── constants.py # 一个很好的应用程序级设置的名称。如果有足够多的应用程序涉及到它们，那么将它们分解到自己的模块中可以为项目增加清晰性。</span><br><span class="line">├── context_processors.py </span><br><span class="line">├── decorators.py# 我们希望找到我们的装饰者。有关装饰师的更多信息</span><br><span class="line">├── db/ #用于任何自定义模型字段或组件的许多项目中使用的包。</span><br><span class="line">├── exceptions.py</span><br><span class="line">├── fields.py # 字段</span><br><span class="line">├── factories.py # 测试数据</span><br><span class="line">├── helpers.py</span><br><span class="line">├── managers.py # 当Models.py增长过大时，常见的解决方法是将任何自定义模型管理器移动到此模块，还有这种操作！</span><br><span class="line">├── middleware.py</span><br><span class="line">├── signals.py</span><br><span class="line">├── utils.py # 和helper差不多</span><br><span class="line">├── viewmixins.py # 视图模块和包可以通过将任何视图混合移到此模块来细化。</span><br></pre></td></tr></table></figure>
+<p>这样来看每个模块的作用大致都比较清楚，对于本节中列出的所有模块，它们的重点应该是“应用程序级”，而不是全局工具。</p>
+</li>
+</ul>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/05/01/const定义常量/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1612,158 +1775,6 @@ app.url_map.converters[&quot;re&quot;] = MyConverterRegex
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/03/05/1-1-第一个爬虫/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="zhang">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="qfwfq">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/03/05/1-1-第一个爬虫/" itemprop="url">爬虫</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-03-05T09:30:00+08:00">
-                2018-03-05
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/爬虫相关/" itemprop="url" rel="index">
-                    <span itemprop="name">爬虫相关</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h4 id="1-1使用Beatifulesoup4"><a href="#1-1使用Beatifulesoup4" class="headerlink" title="1-1使用Beatifulesoup4"></a>1-1使用Beatifulesoup4</h4><pre><code>from urllib.request import urlopen
-</code></pre><p><b>urllib 是Python 的标准库（就是说你不用额外安装就可以运行这个例子），包含了从网络请求数据，处理cookie，甚至改变像请求头和用户代理这些元数据的函数。</b></p>
-<pre><code>html = urlopen(&quot;http://pythonscraping.com/pages/page1.html&quot;)
-print(html.read())
-</code></pre><p>  <b>下面是整个页面的html数据:</b></p>
-<pre><code>b&apos;&lt;html&gt;\n&lt;head&gt;\n&lt;title&gt;A Useful Page&lt;/title&gt;\n&lt;/head&gt;\n&lt;body&gt;\n&lt;h1&gt;An Interesting Title&lt;/h1&gt;\n&lt;div&gt;\nLorem ipsum dolor sit amet,consectetur adipisicing elit,sed do eiusmod tempor incididunt ut laboreet dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitationullamco laboris nisi ut aliquip ex eacommodo consequat. Duis aute irure dolorreprehenderit in voluptate velit essecillum dolore eu fugiat nulla pariatur.Excepteur sint occaecat cupidatat non proident,sunt in culpa qui officia deserunt mollit anim id est laborum.\n&lt;/div&gt;\n&lt;/body&gt;\n&lt;/html&gt;\n&apos;
-</code></pre>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2018/03/05/1-1-第一个爬虫/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -1814,7 +1825,7 @@ print(html.read())
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">14</span>
+                  <span class="site-state-item-count">15</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -1836,7 +1847,7 @@ print(html.read())
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">6</span>
+                  <span class="site-state-item-count">7</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
