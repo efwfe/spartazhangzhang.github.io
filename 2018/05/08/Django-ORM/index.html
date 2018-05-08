@@ -1,0 +1,802 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Django,DataBase," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="Queries and the Database LayerDjango orm和任何ORM一样，将不同类型的数据转换成对象，我们可以在受支持的数据库中非常一致地使用这些对象。然后，它提供了一组与这些对象交互的方法。在大多数情况下，Django在它设计的工作上做得很好。然而，它确实有一些怪癖，理解这些怪癖是学习如何使用的一部分。Django。我们来看看其中的一些，好吗？Cosysteme。如果你能">
+<meta name="keywords" content="Django,DataBase">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Django ORM">
+<meta property="og:url" content="http://yoursite.com/2018/05/08/Django-ORM/index.html">
+<meta property="og:site_name" content="qfwfq">
+<meta property="og:description" content="Queries and the Database LayerDjango orm和任何ORM一样，将不同类型的数据转换成对象，我们可以在受支持的数据库中非常一致地使用这些对象。然后，它提供了一组与这些对象交互的方法。在大多数情况下，Django在它设计的工作上做得很好。然而，它确实有一些怪癖，理解这些怪癖是学习如何使用的一部分。Django。我们来看看其中的一些，好吗？Cosysteme。如果你能">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2018-05-08T12:31:24.710Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Django ORM">
+<meta name="twitter:description" content="Queries and the Database LayerDjango orm和任何ORM一样，将不同类型的数据转换成对象，我们可以在受支持的数据库中非常一致地使用这些对象。然后，它提供了一组与这些对象交互的方法。在大多数情况下，Django在它设计的工作上做得很好。然而，它确实有一些怪癖，理解这些怪癖是学习如何使用的一部分。Django。我们来看看其中的一些，好吗？Cosysteme。如果你能">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2018/05/08/Django-ORM/"/>
+
+
+
+
+
+  <title>Django ORM | qfwfq</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">qfwfq</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">That day on .</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/05/08/Django-ORM/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="zhang">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="qfwfq">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Django ORM</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-05-08T20:29:00+08:00">
+                2018-05-08
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Django/" itemprop="url" rel="index">
+                    <span itemprop="name">Django</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h3 id="Queries-and-the-Database-Layer"><a href="#Queries-and-the-Database-Layer" class="headerlink" title="Queries and the Database Layer"></a>Queries and the Database Layer</h3><p>Django orm和任何ORM一样，将不同类型的数据转换成对象，我们可以在受支持的数据库中非常一致地使用这些对象。然后，它提供了一组与这些对象交互的方法。在大多数情况下，Django在它设计的工作上做得很好。然而，它确实有一些怪癖，理解这些怪癖是学习如何使用的一部分。Django。我们来看看其中的一些，好吗？Cosysteme。如果你能轻松地用orm写你的查询，那么就好好利用它吧。</p>
+<h4 id="使用get-object-or-404-对于独立的模型类"><a href="#使用get-object-or-404-对于独立的模型类" class="headerlink" title="使用get_object_or_404()对于独立的模型类"></a>使用get_object_or_404()对于独立的模型类</h4><p>在视图(例如，要检索单个对象并对其执行操作的详细信息页)中，请使用<code>get_object_or_404() instead of get().</code></p>
+<p><code>只在视图中使用它。不要在辅助函数、窗体、模型方法或任何与视图或直接视图相关的东西中使用它。
+GET_Object_或404()函数，他在任何地方都使用它，视图、模型、表单、所有地方。
+在开发过程中，这非常有效，并通过了测试。不幸的是，这种不受限制的使用意味着当某些记录被管理员删除时，
+整个站点就会崩溃。`</code></p>
+<h4 id="小心可能引发异常的查询"><a href="#小心可能引发异常的查询" class="headerlink" title="小心可能引发异常的查询"></a>小心可能引发异常的查询</h4><p>当您使用get_object_或_404()快捷方式获得一个Django模型实例时，您不需要将其包装在一个try–除了块中。这是因为get_object_or_404()已经为您完成了这个任务。</p>
+<p>然而在大多数别的的场景中你需要使用：try except</p>
+<ul>
+<li>对象不存在 VS 不存在<ul>
+<li>对象不存在于任何模型对象，而不存在于特定模型。</li>
+</ul>
+</li>
+<li>你想要一个对象但是却得到三个对象</li>
+</ul>
+<h4 id="使用惰性查询，增加代码的可读性"><a href="#使用惰性查询，增加代码的可读性" class="headerlink" title="使用惰性查询，增加代码的可读性"></a>使用惰性查询，增加代码的可读性</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">from django.models import Q</span><br><span class="line">from promos.models import Promo</span><br><span class="line">def fun_function(name=None):</span><br><span class="line">&quot;&quot;&quot;Find working ice cream promo&quot;&quot;&quot;</span><br><span class="line">  qs = (Promo</span><br><span class="line">        .objects</span><br><span class="line">        .active()</span><br><span class="line">        .filter(</span><br><span class="line">            Q(name__startswith=name) |</span><br><span class="line">            Q(description__icontains=name)</span><br><span class="line">          )</span><br><span class="line">          .exclude(status=&apos;melted&apos;)</span><br><span class="line">          .select_related(&apos;flavors&apos;)</span><br><span class="line">        )</span><br><span class="line">      return qs</span><br></pre></td></tr></table></figure>
+<p>缺点是调试相对惰性查询会比较麻烦</p>
+<a id="more"></a>
+<h4 id="使用高级查询工具"><a href="#使用高级查询工具" class="headerlink" title="使用高级查询工具"></a>使用高级查询工具</h4><p>Django的ORM是很简单，直观的，然而很多事情依然不够好，当我们处理越来越多的数据的时候，查询集的返回其他的语言，比如JS,Ruby,Go等在这一方面都比python快。</p>
+<p>我们重视使用Django更高级的查询工具来代替python进行数据管理，这样不光提升了性能，我们还喜欢使用比我们创建的基于python的解决方案更可靠的代码(Django和大多数数据库都是不断测试的)。</p>
+<ul>
+<li>查询表达式</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">from django.db.models import F</span><br><span class="line"></span><br><span class="line">from models.customers import Customer</span><br><span class="line"></span><br><span class="line">customers = Customer.objects.filter(scoops_ordered__gt=F(&apos;store_visits&apos;))</span><br></pre></td></tr></table></figure>
+<p>这样做是使用数据库本身来执行比较:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SELECT * from customers_customer where scoops_ordered &gt; store_visits</span><br></pre></td></tr></table></figure></p>
+<ul>
+<li>使用数据库函数</li>
+</ul>
+<p>从Django 1.8开始，我们就能够很容易地使用常用的数据库函数，<br>例如Up()、Let()、Colesce()、conat()、Length()和substr()等，<br>在Django提供的所有高级查询工具中。why？</p>
+<ul>
+<li>使用简单</li>
+<li>数据库函数允许我们将某些逻辑从python移到数据库。这可以是性能提升器，因为python中的数据处理速度不如数据库中的数据处理速度快。</li>
+<li>每个数据库的数据库函数实现不同，但是Django的orm抽象了这段代码。我们在PostgreSQL上使用它们编写的代码将在MySQL或sqlite 3上工作。</li>
+<li>它们也是查询表达式，这意味着它们遵循Django orm的另一个很好的部分已经建立的公共模式。</li>
+</ul>
+<h4 id="除非有必要，别是用SQL语句"><a href="#除非有必要，别是用SQL语句" class="headerlink" title="除非有必要，别是用SQL语句"></a>除非有必要，别是用SQL语句</h4><p>每当我们编写原始SQL时，我们都会丢失安全性和可重用性的元素。这不仅适用于内部项目代码，而且也适用于Django世界的其他地方。特别是，如果您将Django应用程序作为第三方包发布，使用原始SQL将降低工作的可移植性。此外，在数据必须从一个数据库迁移的罕见情况下。对于另一种情况，在SQL查询中使用的任何特定于数据库的特性都会使迁移复杂化。</p>
+<p>那么，您应该在什么时候编写原始SQL呢？如果将查询表示为原始SQL将极大地简化python代码或ORM生成的SQL，那么就继续执行。例如，如果您将许多查询集操作链接在一个大型数据集上，则可能有一种更有效的方法将其编写为原始SQL。</p>
+<p>`Malcolm Tredinnick关于用Django编写SQL的建议<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">ORM可以做许多奇妙的事情，但有时SQL是正确的答案。Django orm的粗略策略是，它是一个存储层，碰巧使用SQL实现功能。如果您需要编写高级SQL，您应该编写。我会通过警告过度使用RAW()和EXCEL()方法来平衡这一点</span><br><span class="line"></span><br><span class="line">#### 根据需要添加索引</span><br><span class="line">虽然将`db_index=true`添加到任何模型字段很容易，但要理解何时应该这样做需要一些判断.</span><br><span class="line"></span><br><span class="line">需要考虑添加索引的情况：</span><br><span class="line">- 索引将被频繁使用，如在所有查询中的10-25%。</span><br><span class="line">- 有真实的数据，或者类似真实数据的东西，来我们可以分析索引的结果</span><br><span class="line">- 我们可以运行测试来确定索引是否会产生结果的改进。</span><br><span class="line"></span><br><span class="line">#### 事务</span><br><span class="line">ORM是在执行的时候自动提交每一个查询语句，在数据修改的情况下，这意味着每次调用.create()或.update()时，它都会立即修改SQL数据库中的数据，这样做的好处是，它使初始开发人员更容易理解该组织。缺点是，如果一个视图(或其他一些操作)需要进行两个或多个数据库修改，如果一个修改成功，而另一个修改失败，则数据库面临损坏的风险。</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">解决数据库损坏风险的方法是使用数据库事务。数据库事务是两个或多个数据库更新包含在单个工作单元中的地方。如果单个更新失败，事务中的所有更新都会回滚。要使此工作，数据库事务按照定义必须是原子的、一致的、孤立的和持久的。使用首字母缩写ACID的数据库事务属性。</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">Django有一个强大的和易于使用的事务机制。这使得使用一个比较直观的模式使用装饰器和上下文管理器来更容易地锁定项目上的数据库完整性。</span><br><span class="line"></span><br><span class="line">#### 在事务中封装每个HTTP请求</span><br></pre></td></tr></table></figure></p>
+<p>DATABASES = {<br>‘default’: {</p>
+<h1 id="…"><a href="#…" class="headerlink" title="…"></a>…</h1><pre><code>&apos;ATOMIC_REQUESTS&apos;: True,
+},
+</code></pre><p>}<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">Django使处理一个事务内部的所有web请求变得很容易。如上面所示，通过将它设置为true，所有请求都封装在事务中，包括那些只读取数据的请求。这种方法的优点是安全：视图中的所有数据库查询都受到保护，缺点是性能可能受到影响。我们不能告诉您这会对性能产生多大影响，因为它取决于单个数据库设计和各种数据库引擎处理锁定的能力。</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">我们发现，这是一种很好的方法，可以在一开始就确保一个编写量大的项目的数据库保持完整性。然而，由于有了大量的流量，我们不得不返回到一个更集中的方法。这取决于大小，这可能是一个小任务，也可能是一个巨大的任务。</span><br><span class="line"></span><br><span class="line">在使用原子请求时要记住的另一件事是，只有数据库状态会在错误上回滚。发送确认邮件，然后回滚包装请求的事务是很尴尬的。这个问题可能会出现在对数据库以外的任何东西的“写”：发送电子邮件或短信，调用第三方api，写入文件系统等等。因此，在编写创建/更新/删除记录但与非数据库项交互的视图时，您可以选择使用transaction.non_Atomicrequents()来修饰视图。</span><br></pre></td></tr></table></figure></p>
+<p>核心Django开发人员和新事务系统的主要实现者Aymeric Augustin说：“这个装饰器需要视图和模型之间的紧密耦合，这将使代码库更难维护。如果我们没有提供向后兼容性，我们可能会想出一个更好的设计。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">您可以在这个基于api的超级简单视图中使用更显式的声明，如下所示</span><br></pre></td></tr></table></figure></p>
+<p>from django.db import transaction<br>from django.http import HttpResponse<br>from django.shortcuts import get_object_or_404<br>from django.utils import timezone</p>
+<p>from .models import Flavor</p>
+<p>@transaction.non_atomic_requests<br>def posting_flavor_status(request, pk, status):<br>  flavor = get_object_or_404(Flavor, pk=pk)</p>
+<h1 id="This-will-execute-in-autocommit-mode-Django’s-default"><a href="#This-will-execute-in-autocommit-mode-Django’s-default" class="headerlink" title="This will execute in autocommit mode (Django’s default)."></a>This will execute in autocommit mode (Django’s default).</h1><p>  flavor.latest_status_change_attempt = timezone.now()<br>  flavor.save()</p>
+<p>  with transaction.atomic():</p>
+<h1 id="This-code-executes-inside-a-transaction"><a href="#This-code-executes-inside-a-transaction" class="headerlink" title="This code executes inside a transaction."></a>This code executes inside a transaction.</h1><pre><code>flavor.status = status
+flavor.latest_status_change_success = timezone.now()
+flavor.save()
+return HttpResponse(&apos;Hooray&apos;)
+</code></pre><h1 id="If-the-transaction-fails-return-the-appropriate-status"><a href="#If-the-transaction-fails-return-the-appropriate-status" class="headerlink" title="If the transaction fails, return the appropriate status"></a>If the transaction fails, return the appropriate status</h1><p>  return HttpResponse(‘Sadness’, status_code=400)<br><code>`</code></p>
+<p>对于这些类型的项目，工程师系统需要最终的一致性，而不是事务完整性。 换句话说，要为发生故障和回滚的事务做好准备。 幸运的是，由于事务，即使是回滚，数据将保持准确和干净。</p>
+<h5 id="显示声明"><a href="#显示声明" class="headerlink" title="显示声明"></a>显示声明</h5><p>显式事务声明是提高站点性能的一种方法。换句话说，指定哪些视图和业务逻辑封装在事务中，哪些不是。</p>
+<p>当涉及到事务时，下面是一些很好的准则：</p>
+<ul>
+<li>不修改数据库的数据库操作不应包装在事务中；</li>
+<li>修改数据库的数据库操作应该包装在事务中；</li>
+<li>特殊情况，包括需要数据库读取和性能考虑的数据库修改，可能会影响到前两条准则。</li>
+</ul>
+<p>Create Data   .create(), .bulk_create(), .get_or_create(), <b>通常需要使用事务</b><br></p>
+<p>检索数据      .get(), .filter(), .count(), .iterate(), .exists(),<br>.exclude(), .in_bulk, etc.              <b>不需要</b><br></p>
+<p>修改/删除数据      .update().delete()     <b>需要</b></p>
+<h5 id="django-http-StreamingHttpResponse-和-事务"><a href="#django-http-StreamingHttpResponse-和-事务" class="headerlink" title="django.http.StreamingHttpResponse 和 事务"></a>django.http.StreamingHttpResponse 和 事务</h5><p>如果一个视图正在返回django.http.Streinghttpresponse，那么一旦响应开始，就不可能处理事务错误。如果您的项目使用此响应方法，那么原子请求应该执行以下操作之一：</p>
+<ul>
+<li>将原子_请求设置为Django的默认值，这是false。然后您可以使用前面中探讨的技术：显式事务声明。或…</li>
+<li>将视图包装在django.db.transaction.non_Atomicesedator中。</li>
+<li>请记住，您可以在流响应中使用原子请求，但是事务本身只适用于视图。如果响应流的生成触发了额外的SQL查询，它们将在自动提交模式中进行。希望生成的响应不会触发数据库写入。</li>
+</ul>
+<h5 id="MySQL-事务"><a href="#MySQL-事务" class="headerlink" title="MySQL 事务"></a>MySQL 事务</h5><p>如果所使用的数据库是MySQL，则可能不支持事务，这取决于您选择的表类型(如Innodb或myisam)。如果不支持事务，Django将始终在自动提交模式下运行，而不考虑为支持事务而编写的原子请求或代码。</p>
+<p>更多ORM事务<br><a href="https://docs.djangoproject.com/en/1.11/topics/db/transactions/" target="_blank" rel="noopener">https://docs.djangoproject.com/en/1.11/topics/db/transactions/</a><br><a href="https://realpython.com/transaction-management-with-django-1-6/" target="_blank" rel="noopener">https://realpython.com/transaction-management-with-django-1-6/</a></p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Django/" rel="tag"># Django</a>
+          
+            <a href="/tags/DataBase/" rel="tag"># DataBase</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/05/07/Django-设计原则/" rel="next" title="Django 设计原则">
+                <i class="fa fa-chevron-left"></i> Django 设计原则
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">zhang</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">16</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">10</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">8</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#Queries-and-the-Database-Layer"><span class="nav-number">1.</span> <span class="nav-text">Queries and the Database Layer</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#使用get-object-or-404-对于独立的模型类"><span class="nav-number">1.1.</span> <span class="nav-text">使用get_object_or_404()对于独立的模型类</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#小心可能引发异常的查询"><span class="nav-number">1.2.</span> <span class="nav-text">小心可能引发异常的查询</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#使用惰性查询，增加代码的可读性"><span class="nav-number">1.3.</span> <span class="nav-text">使用惰性查询，增加代码的可读性</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#使用高级查询工具"><span class="nav-number">1.4.</span> <span class="nav-text">使用高级查询工具</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#除非有必要，别是用SQL语句"><span class="nav-number">1.5.</span> <span class="nav-text">除非有必要，别是用SQL语句</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#…"><span class="nav-number"></span> <span class="nav-text">…</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#This-will-execute-in-autocommit-mode-Django’s-default"><span class="nav-number"></span> <span class="nav-text">This will execute in autocommit mode (Django’s default).</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#This-code-executes-inside-a-transaction"><span class="nav-number"></span> <span class="nav-text">This code executes inside a transaction.</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#If-the-transaction-fails-return-the-appropriate-status"><span class="nav-number"></span> <span class="nav-text">If the transaction fails, return the appropriate status</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#显示声明"><span class="nav-number">0.0.1.</span> <span class="nav-text">显示声明</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#django-http-StreamingHttpResponse-和-事务"><span class="nav-number">0.0.2.</span> <span class="nav-text">django.http.StreamingHttpResponse 和 事务</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#MySQL-事务"><span class="nav-number">0.0.3.</span> <span class="nav-text">MySQL 事务</span></a></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">zhang</span>
+
+  
+</div>
+
+
+  <div class="powered-by"><a class="theme-link" target="_blank" href="https://hexo.io">ZhangDaihui</a> 个人博客</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">博客 &mdash; <a class="theme-link" target="_blank" href="https://spartazhangzhang.github.io/">spartazhang
+  }</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
