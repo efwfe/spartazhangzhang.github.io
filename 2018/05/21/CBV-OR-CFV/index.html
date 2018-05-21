@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="django," />
+  <meta name="keywords" content="Django," />
 
 
 
@@ -80,7 +80,7 @@
 
 
 <meta name="description" content="CBV or CFVKeep View Logic Out of URLConfsKeep View Logic Out of URLConfsKeep View Logic Out of URLConfs  事实上，我们从开发人员那里听说，看到在urlconf中定义的cbv是他们避免使用它们的部分原因。 Don’d repeat yourself loose coupling:我们已经从urlc">
-<meta name="keywords" content="django">
+<meta name="keywords" content="Django">
 <meta property="og:type" content="article">
 <meta property="og:title" content="CBV OR CFV?">
 <meta property="og:url" content="http://yoursite.com/2018/05/21/CBV-OR-CFV/index.html">
@@ -88,7 +88,7 @@
 <meta property="og:description" content="CBV or CFVKeep View Logic Out of URLConfsKeep View Logic Out of URLConfsKeep View Logic Out of URLConfs  事实上，我们从开发人员那里听说，看到在urlconf中定义的cbv是他们避免使用它们的部分原因。 Don’d repeat yourself loose coupling:我们已经从urlc">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://p8ywjlym2.bkt.clouddn.com/FBV%20or%20CBV.png">
-<meta property="og:updated_time" content="2018-05-21T11:43:39.042Z">
+<meta property="og:updated_time" content="2018-05-21T11:47:45.551Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="CBV OR CFV?">
 <meta name="twitter:description" content="CBV or CFVKeep View Logic Out of URLConfsKeep View Logic Out of URLConfsKeep View Logic Out of URLConfs  事实上，我们从开发人员那里听说，看到在urlconf中定义的cbv是他们避免使用它们的部分原因。 Don’d repeat yourself loose coupling:我们已经从urlc">
@@ -307,8 +307,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/django/" itemprop="url" rel="index">
-                    <span itemprop="name">django</span>
+                  <a href="/categories/Django/" itemprop="url" rel="index">
+                    <span itemprop="name">Django</span>
                   </a>
                 </span>
 
@@ -373,6 +373,7 @@
 <p>有时，我们希望在视图中重用代码，但不希望将其绑定到诸如中间件或上下文处理器之类的全局操作中可以跨项目使用的实用程序函数。<br>对于很多功能函数，我们从django.http.httRequest(或HttpRequest，简称HttpRequest)对象获取一个或多个属性，并收集数据或执行操作。</p>
 <p>我们发现，通过将请求对象本身作为主参数，我们在更多方法上有更简单的参数。这意味着管理函数/方法参数的认知过载减少：只需传入HttpRequest对象！</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> django.core.exceptions <span class="keyword">import</span> PermissionDenied</span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">check_sprinkle_rights</span><span class="params">(request)</span>:</span></span><br><span class="line">    <span class="keyword">if</span> request.user.can_sprinkle <span class="keyword">or</span> request.user.is_staff:</span><br><span class="line">      <span class="keyword">return</span> request</span><br><span class="line">    <span class="comment"># Return a HTTP 403 back to the user</span></span><br><span class="line">    <span class="keyword">raise</span> PermissionDenied</span><br></pre></td></tr></table></figure>
+<a id="more"></a>
 <p>这种方法的另一个好特性是将其集成到基于类的视图中是非常简单的。</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> django.views.generic <span class="keyword">import</span> DetailView</span><br><span class="line"><span class="keyword">from</span> .models <span class="keyword">import</span> Sprinkle</span><br><span class="line"><span class="keyword">from</span> .utils <span class="keyword">import</span> check_sprinkles</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">SprinkleDetail</span><span class="params">(DetailView)</span>:</span></span><br><span class="line"><span class="string">"""Standard detail view"""</span></span><br><span class="line">model = Sprinkle</span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">dispatch</span><span class="params">(self, request, *args, **kwargs)</span>:</span></span><br><span class="line">  request = check_sprinkles(request)</span><br><span class="line">  <span class="keyword">return</span> super(SprinkleDetail, self).dispatch(request, *args, **kwargs)</span><br></pre></td></tr></table></figure>
 <h5 id="语法糖超甜"><a href="#语法糖超甜" class="headerlink" title="语法糖超甜"></a>语法糖超甜</h5><p>这一次，这不是关于冰激凌，而是关于代码！用计算机科学的说法，语法糖是一种语法，为了使事情更容易阅读或表达。在python中，修饰器是一种特性，不是出于必要，而是为了使代码更简洁、更甜，以便人们阅读。所以，装饰器是甜的。</p>
@@ -403,7 +404,6 @@
 <p>JacobKaplan-Moss说：“我的一般建议是从函数视图开始，因为它们更容易阅读和理解，并且只在需要它们的地方使用cbv。您在哪里需要它们？任何需要在多个视图中重用的代码块的地方。”</p>
 <p>如果您使用基于类的视图来呈现内容，请考虑使用视图对象本身来提供对其他方法和属性可以调用的属性和方法的访问。它们也可以从模板中调用.</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> django.contrib.auth.mixins <span class="keyword">import</span> LoginRequiredMixin</span><br><span class="line"><span class="keyword">from</span> django.utils.functional <span class="keyword">import</span> cached_property</span><br><span class="line"><span class="keyword">from</span> django.views.generic <span class="keyword">import</span> UpdateView, TemplateView</span><br><span class="line"><span class="keyword">from</span> .models <span class="keyword">import</span> Flavor</span><br><span class="line"><span class="keyword">from</span> .tasks <span class="keyword">import</span> update_user_who_favorited</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">FavoriteMixin</span>:</span></span><br><span class="line"><span class="meta">@cached_property</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">likes_and_favorites</span><span class="params">(self)</span>:</span></span><br><span class="line"><span class="string">"""Returns a dictionary of likes and favorites"""</span></span><br><span class="line">likes = self.object.likes()</span><br><span class="line">favorites = self.object.favorites()</span><br><span class="line"><span class="keyword">return</span> &#123;</span><br><span class="line"><span class="string">"likes"</span>: likes,</span><br><span class="line"><span class="string">"favorites"</span>: favorites,</span><br><span class="line"><span class="string">"favorites_count"</span>: favorites.count(),</span><br><span class="line">&#125;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">FlavorUpdateView</span><span class="params">(LoginRequiredMixin, FavoriteMixin, UpdateView)</span>:</span></span><br><span class="line">model = Flavor</span><br><span class="line">fields = [<span class="string">'title'</span>, <span class="string">'slug'</span>, <span class="string">'scoops_remaining'</span>]</span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">form_valid</span><span class="params">(self, form)</span>:</span></span><br><span class="line">update_user_who_favorited(</span><br><span class="line">instance=self.object,</span><br><span class="line">favorites=self.likes_and_favorites[<span class="string">'favorites'</span>]</span><br><span class="line">)</span><br><span class="line"><span class="keyword">return</span> super(FlavorUpdateView, self).form_valid(form)</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">FlavorDetailView</span><span class="params">(LoginRequiredMixin, FavoriteMixin, TemplateView)</span>:</span></span><br><span class="line">model = Flavor</span><br></pre></td></tr></table></figure>
-
       
     </div>
     
@@ -420,7 +420,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/django/" rel="tag"># django</a>
+            <a href="/tags/Django/" rel="tag"># Django</a>
           
         </div>
       
@@ -529,7 +529,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">11</span>
+                  <span class="site-state-item-count">10</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -540,7 +540,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">9</span>
+                  <span class="site-state-item-count">8</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
