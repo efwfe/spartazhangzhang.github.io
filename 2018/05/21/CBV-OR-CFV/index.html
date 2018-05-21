@@ -1,0 +1,789 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="django," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="CBV or CFVKeep View Logic Out of URLConfsKeep View Logic Out of URLConfsKeep View Logic Out of URLConfs  事实上，我们从开发人员那里听说，看到在urlconf中定义的cbv是他们避免使用它们的部分原因。 Don’d repeat yourself loose coupling:我们已经从urlc">
+<meta name="keywords" content="django">
+<meta property="og:type" content="article">
+<meta property="og:title" content="CBV OR CFV?">
+<meta property="og:url" content="http://yoursite.com/2018/05/21/CBV-OR-CFV/index.html">
+<meta property="og:site_name" content="qfwfq">
+<meta property="og:description" content="CBV or CFVKeep View Logic Out of URLConfsKeep View Logic Out of URLConfsKeep View Logic Out of URLConfs  事实上，我们从开发人员那里听说，看到在urlconf中定义的cbv是他们避免使用它们的部分原因。 Don’d repeat yourself loose coupling:我们已经从urlc">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://p8ywjlym2.bkt.clouddn.com/FBV%20or%20CBV.png">
+<meta property="og:updated_time" content="2018-05-21T11:43:39.042Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="CBV OR CFV?">
+<meta name="twitter:description" content="CBV or CFVKeep View Logic Out of URLConfsKeep View Logic Out of URLConfsKeep View Logic Out of URLConfs  事实上，我们从开发人员那里听说，看到在urlconf中定义的cbv是他们避免使用它们的部分原因。 Don’d repeat yourself loose coupling:我们已经从urlc">
+<meta name="twitter:image" content="http://p8ywjlym2.bkt.clouddn.com/FBV%20or%20CBV.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2018/05/21/CBV-OR-CFV/"/>
+
+
+
+
+
+  <title>CBV OR CFV? | qfwfq</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">qfwfq</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">That day on .</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/05/21/CBV-OR-CFV/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="zhang">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="qfwfq">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">CBV OR CFV?</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-05-21T19:43:00+08:00">
+                2018-05-21
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/django/" itemprop="url" rel="index">
+                    <span itemprop="name">django</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h4 id="CBV-or-CFV"><a href="#CBV-or-CFV" class="headerlink" title="CBV or CFV"></a>CBV or CFV</h4><p><img src="http://p8ywjlym2.bkt.clouddn.com/FBV%20or%20CBV.png" alt="" align="center"><br><b>Keep View Logic Out of URLConfs</b><br><br><b>Keep View Logic Out of URLConfs</b><br><br><b>Keep View Logic Out of URLConfs</b><br></p>
+<ul>
+<li>事实上，我们从开发人员那里听说，看到在urlconf中定义的cbv是他们避免使用它们的部分原因。</li>
+<li>Don’d repeat yourself</li>
+<li>loose coupling:我们已经从urlconf中删除了模型和模板名称，因为视图应该是视图，urlcons应该是urlconf。我们应该能够从一个或多个urlconf调用我们的视图，我们的方法允许我们这样做。</li>
+<li>uslconfs should do one thing and do it well:现在，我们的urlconf主要关注一件事：URL路由。我们没有跟踪视图和urlconf的视图逻辑，我们只是查看视图</li>
+<li>our views benefit from being class-based:我们的视图，通过在视图模块中有一个正式的定义，可以继承其他类。这意味着添加身份验证、授权、新的内容格式或任何其他业务需求，我们的方式更容易处理。</li>
+<li>infinite flexibility,无限的灵活性,通过在视图模块中有一个正式的定义，我们的视图可以实现自己的自定义逻辑。</li>
+</ul>
+<ul>
+<li>ytiUse URL Namespaces</li>
+<li>Try to Keep Business Logic Out of Views</li>
+<li>Don’t Use locals() as Views Context</li>
+</ul>
+<h4 id="FBV"><a href="#FBV" class="headerlink" title="FBV"></a>FBV</h4><ul>
+<li>使用基于函数的视图<ul>
+<li>更少的视图函数</li>
+<li>没有重复</li>
+<li>视图应该处理表示逻辑。在可能的情况下，尽量在模型中保持业务逻辑，如果必须的话，则保持业务逻辑。</li>
+<li>让你的视图简单</li>
+<li>使用它们编写自定义403, 404和500错误处理程序</li>
+<li>复杂的嵌套-如果块是要避免的。</li>
+</ul>
+</li>
+<li>通过 HttpRequest 对象</li>
+</ul>
+<p>有时，我们希望在视图中重用代码，但不希望将其绑定到诸如中间件或上下文处理器之类的全局操作中可以跨项目使用的实用程序函数。<br>对于很多功能函数，我们从django.http.httRequest(或HttpRequest，简称HttpRequest)对象获取一个或多个属性，并收集数据或执行操作。</p>
+<p>我们发现，通过将请求对象本身作为主参数，我们在更多方法上有更简单的参数。这意味着管理函数/方法参数的认知过载减少：只需传入HttpRequest对象！</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> django.core.exceptions <span class="keyword">import</span> PermissionDenied</span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">check_sprinkle_rights</span><span class="params">(request)</span>:</span></span><br><span class="line">    <span class="keyword">if</span> request.user.can_sprinkle <span class="keyword">or</span> request.user.is_staff:</span><br><span class="line">      <span class="keyword">return</span> request</span><br><span class="line">    <span class="comment"># Return a HTTP 403 back to the user</span></span><br><span class="line">    <span class="keyword">raise</span> PermissionDenied</span><br></pre></td></tr></table></figure>
+<p>这种方法的另一个好特性是将其集成到基于类的视图中是非常简单的。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> django.views.generic <span class="keyword">import</span> DetailView</span><br><span class="line"><span class="keyword">from</span> .models <span class="keyword">import</span> Sprinkle</span><br><span class="line"><span class="keyword">from</span> .utils <span class="keyword">import</span> check_sprinkles</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">SprinkleDetail</span><span class="params">(DetailView)</span>:</span></span><br><span class="line"><span class="string">"""Standard detail view"""</span></span><br><span class="line">model = Sprinkle</span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">dispatch</span><span class="params">(self, request, *args, **kwargs)</span>:</span></span><br><span class="line">  request = check_sprinkles(request)</span><br><span class="line">  <span class="keyword">return</span> super(SprinkleDetail, self).dispatch(request, *args, **kwargs)</span><br></pre></td></tr></table></figure>
+<h5 id="语法糖超甜"><a href="#语法糖超甜" class="headerlink" title="语法糖超甜"></a>语法糖超甜</h5><p>这一次，这不是关于冰激凌，而是关于代码！用计算机科学的说法，语法糖是一种语法，为了使事情更容易阅读或表达。在python中，修饰器是一种特性，不是出于必要，而是为了使代码更简洁、更甜，以便人们阅读。所以，装饰器是甜的。</p>
+<p>当我们将简单函数的功能与装饰器的语法糖结合起来时，我们就会得到一些方便的、可重用的工具，比如非常有用的工具，几乎可以成为无处不在的django.contrib.auth.decator。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> functools</span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">decorator</span><span class="params">(view_func)</span>:</span></span><br><span class="line"><span class="meta">@functools.wraps(view_func)</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">new_view_func</span><span class="params">(request, *args, **kwargs)</span>:</span></span><br><span class="line">    <span class="comment"># You can modify the request (HttpRequest) object here.</span></span><br><span class="line">    response = view_func(request, *args, **kwargs)</span><br><span class="line">    <span class="comment"># You can modify the response (HttpResponse) object here.</span></span><br><span class="line">    <span class="keyword">return</span> response</span><br><span class="line">  <span class="keyword">return</span> new_view_func</span><br></pre></td></tr></table></figure>
+<p>这可能没有多大意义，所以我们将一步地研究它，使用内联代码注释来澄清我们正在做什么。首先，让我们从前面的示例中修改装饰器模板，以满足我们的需要<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> functools <span class="keyword">import</span> wraps</span><br><span class="line"><span class="keyword">from</span> . <span class="keyword">import</span> utils</span><br><span class="line"><span class="comment"># based off the decorator template from the previous chapter</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">new_view_func</span><span class="params">(request, *args, **kwargs)</span>:</span></span><br><span class="line">    <span class="comment"># Act on the request object with utils.can_sprinkle()</span></span><br><span class="line">    request = utils.can_sprinkle(request)</span><br><span class="line">    <span class="comment"># Call the view function</span></span><br><span class="line">    response = view_func(request, *args, **kwargs)</span><br><span class="line">    <span class="comment"># Return the HttpResponse object</span></span><br><span class="line">    <span class="keyword">return</span> response</span><br><span class="line">  <span class="keyword">return</span> new_view_func</span><br></pre></td></tr></table></figure></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> django.shortcuts <span class="keyword">import</span> get_object_or_404, render</span><br><span class="line"><span class="keyword">from</span> .decorators <span class="keyword">import</span> check_sprinkles</span><br><span class="line"><span class="keyword">from</span> .models <span class="keyword">import</span> Sprinkle</span><br><span class="line"><span class="comment"># Attach the decorator to the view</span></span><br><span class="line"><span class="meta">@check_sprinkles</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">sprinkle_detail</span><span class="params">(request, pk)</span>:</span></span><br><span class="line"><span class="string">"""Standard detail view"""</span></span><br><span class="line">    sprinkle = get_object_or_404(Sprinkle, pk=pk)</span><br><span class="line">  <span class="keyword">return</span> render(request, <span class="string">"sprinkles/sprinkle_detail.html"</span>,</span><br><span class="line">&#123;<span class="string">"sprinkle"</span>: sprinkle&#125;)</span><br></pre></td></tr></table></figure>
+<p><b>与任何强大的工具一样，装饰器可能被错误地使用。太多的装饰者可以创建他们自己的混淆形式，使得即使是复杂的基于类的视图层次结构相比看起来也很简单。当使用装饰器时，要确定在视图上可以设置多少装饰者并坚持使用它的限制。<br></b></p>
+<h4 id="CBV"><a href="#CBV" class="headerlink" title="CBV"></a>CBV</h4><p>Django视图只是一个可调用的视图，它接受请求对象并返回一个响应。对于基于函数的视图(Fbv)，视图函数是可调用的。对于cbv，视图类提供一个as_view()类方法来返回可调用的视图。这种机制是在django.views.generic.view.all cbv中实现的。所有cbv都应该直接或间接地从该类继承。</p>
+<ul>
+<li>使用CBV mixin<ul>
+<li>在编程中，Mixin是一个类，它提供了要继承的功能，但不是用来自己实例化的。在具有多重继承的编程语言中，Mixin可以用来向类添加增强的功能和行为；</li>
+<li>当使用Mixin编写我们自己的视图类时，我们推荐这些由Kenneth Love提供的继承规则。这些规则遵循python的方法解析顺序，在最简单的定义中，这些规则从左到右依次进行<ul>
+<li>Django提供的基本视图类总是位于右侧。</li>
+<li>Mixin转到基视图的左侧。</li>
+<li>Mixin应该继承python的内置对象类型。</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> django.views.generic <span class="keyword">import</span> TemplateView</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">FreshFruitMixin</span>:</span></span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">get_context_data</span><span class="params">(self, **kwargs)</span>:</span></span><br><span class="line">    context = super(FreshFruitMixin,self).get_context_data(**kwargs)</span><br><span class="line">    context[<span class="string">"has_fresh_fruit"</span>] = <span class="keyword">True</span></span><br><span class="line">  <span class="keyword">return</span> context</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">FruityFlavorView</span><span class="params">(FreshFruitMixin, TemplateView)</span>:</span></span><br><span class="line">    template_name = <span class="string">"fruity_flavor.html"</span></span><br></pre></td></tr></table></figure>
+<h5 id="Django-gcbv应该用于什么任务？"><a href="#Django-gcbv应该用于什么任务？" class="headerlink" title="Django gcbv应该用于什么任务？"></a>Django gcbv应该用于什么任务？</h5><p><b>“使用所有通用视图！”</b></p>
+<p>这一学派是基于这样一种思想，即既然Django提供了功能来减少您的工作量，为什么不使用该功能呢？我们倾向于属于这个学派，并且已经成功地使用了它，快速地构建了一些项目，然后维护了一些项目。</p>
+<p><b>“只使用django.views.generic.view”。</b></p>
+<p>思想的基础是，基Django cbv所做的仅仅是足够，并且是‘真正的cbv，其他一切都是泛型cbv’。在过去的一年中，我们发现这可能是一种非常有用的方法，用于那些基于资源的“使用所有视图”方法崩溃的棘手任务</p>
+<p><b>“除非您实际上是在对视图进行子类化，否则不要使用它们。”</b></p>
+<p>JacobKaplan-Moss说：“我的一般建议是从函数视图开始，因为它们更容易阅读和理解，并且只在需要它们的地方使用cbv。您在哪里需要它们？任何需要在多个视图中重用的代码块的地方。”</p>
+<p>如果您使用基于类的视图来呈现内容，请考虑使用视图对象本身来提供对其他方法和属性可以调用的属性和方法的访问。它们也可以从模板中调用.</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> django.contrib.auth.mixins <span class="keyword">import</span> LoginRequiredMixin</span><br><span class="line"><span class="keyword">from</span> django.utils.functional <span class="keyword">import</span> cached_property</span><br><span class="line"><span class="keyword">from</span> django.views.generic <span class="keyword">import</span> UpdateView, TemplateView</span><br><span class="line"><span class="keyword">from</span> .models <span class="keyword">import</span> Flavor</span><br><span class="line"><span class="keyword">from</span> .tasks <span class="keyword">import</span> update_user_who_favorited</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">FavoriteMixin</span>:</span></span><br><span class="line"><span class="meta">@cached_property</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">likes_and_favorites</span><span class="params">(self)</span>:</span></span><br><span class="line"><span class="string">"""Returns a dictionary of likes and favorites"""</span></span><br><span class="line">likes = self.object.likes()</span><br><span class="line">favorites = self.object.favorites()</span><br><span class="line"><span class="keyword">return</span> &#123;</span><br><span class="line"><span class="string">"likes"</span>: likes,</span><br><span class="line"><span class="string">"favorites"</span>: favorites,</span><br><span class="line"><span class="string">"favorites_count"</span>: favorites.count(),</span><br><span class="line">&#125;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">FlavorUpdateView</span><span class="params">(LoginRequiredMixin, FavoriteMixin, UpdateView)</span>:</span></span><br><span class="line">model = Flavor</span><br><span class="line">fields = [<span class="string">'title'</span>, <span class="string">'slug'</span>, <span class="string">'scoops_remaining'</span>]</span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">form_valid</span><span class="params">(self, form)</span>:</span></span><br><span class="line">update_user_who_favorited(</span><br><span class="line">instance=self.object,</span><br><span class="line">favorites=self.likes_and_favorites[<span class="string">'favorites'</span>]</span><br><span class="line">)</span><br><span class="line"><span class="keyword">return</span> super(FlavorUpdateView, self).form_valid(form)</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">FlavorDetailView</span><span class="params">(LoginRequiredMixin, FavoriteMixin, TemplateView)</span>:</span></span><br><span class="line">model = Flavor</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/django/" rel="tag"># django</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/05/08/Django-ORM/" rel="next" title="Django ORM">
+                <i class="fa fa-chevron-left"></i> Django ORM
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">zhang</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">17</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">11</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">9</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#CBV-or-CFV"><span class="nav-number">1.</span> <span class="nav-text">CBV or CFV</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#FBV"><span class="nav-number">2.</span> <span class="nav-text">FBV</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#语法糖超甜"><span class="nav-number">2.1.</span> <span class="nav-text">语法糖超甜</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#CBV"><span class="nav-number">3.</span> <span class="nav-text">CBV</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#Django-gcbv应该用于什么任务？"><span class="nav-number">3.1.</span> <span class="nav-text">Django gcbv应该用于什么任务？</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">zhang</span>
+
+  
+</div>
+
+
+  <div class="powered-by"><a class="theme-link" target="_blank" href="https://hexo.io">ZhangDaihui</a> 个人博客</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">博客 &mdash; <a class="theme-link" target="_blank" href="https://spartazhangzhang.github.io/">spartazhang
+  }</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
